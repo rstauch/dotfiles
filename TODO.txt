@@ -1,0 +1,31 @@
+- Darwin legacy package angeben um sicherzustellen das dependencies auf dem mac auch vorhanden wären (vermultich umstellung auf flake notwendig)
+Struktur für Optionen?
+# https://github.com/davidtwco/veritas/blob/3d10f71d27f13b63cda5c32e9c1d4d0c20c19d1e/home/configs/fzf.nix
+
+---
+
+- onedrive einbindung
+    - online zugriff via: onedrive.live.com
+    - url rauskopieren und bei microsoft einloggen (robert.stauch@fluxdev.de)
+    -> weiterleitung auf "leere Seite" -> URL rauskopieren und in cli als antwort reinkopieren
+    - sync config anlegen
+        - onedrive --display-config
+        - verify w/: onedrive --synchronize --verbose --dry-run
+        - perform single-directory sync: onedrive --synchronize --single-directory 'keepass' --dry-run
+    - TODO: alias einführen: os = onedrive --synchronize --single-directory '${PROJECT}' --skip-symlinks --dry-run
+
+- README
+    - Installation unter wsl
+        *- wsl2 anlegen incl. systemmd
+        *- clone + script ausführen
+        - Nacharbeiten
+            - keepass vault anlegen
+            - firefox ?: login, empfohlene plugins,
+                *- als standbrowser festlegen
+            *- intellij ?
+            - onedrive anbindung
+                -> evtl. einbauen das onedrive als systemmd ausgeführt wird oder wie syncthing in bashrc gestartet wird
+        - nix config update process
+        - Verwendung bash anstelle von zsh falls benötigt
+    - Shortcuts
+    - Verwendung Tmux ?
