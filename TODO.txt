@@ -25,7 +25,7 @@ Struktur für Optionen?
             *- intellij ?
             - onedrive anbindung
                 -> evtl. einbauen das onedrive als systemmd ausgeführt wird oder wie syncthing in bashrc gestartet wird
-        - nix config update process
+        - nix config update process: hmu oder apply.sh
         - Verwendung bash anstelle von zsh falls benötigt
     - Shortcuts
     - Verwendung Tmux ?
