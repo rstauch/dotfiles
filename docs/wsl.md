@@ -88,6 +88,8 @@ cd scripts
 ```
 
 ## Post-Install Steps
+offene Punkte: OneDrive?<->Keepass?, ?Firefox?<->Keepass; vereinheitlichung WSL Script + nix; Darwin; Cheatsheet
+
 - enable Docker Integration and verify with `docker ps -a` and `docker run hello-world`
   - ggf. einfach Docker Setting togglen und un-togglen, danach Shell neu starten
 - create keepass vault in onedrive default dir (~/OneDrive) (**möglicherweise automatisierbar**)
