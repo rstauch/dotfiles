@@ -57,22 +57,41 @@ in {
       settings = {
         "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
         "signon.rememberSignons" = false;
+        "signon.privateBrowsingCapture.enabled" = false;
 
         # "services.sync.username" = "stefan-machmeier@outlook.com";
 
         # disable new-tab page
         "browser.newtabpage.enabled" = false;
 
-        "browser.startup.homepage" = "about:blank";
+        # "browser.startup.homepage" = "about:blank";
+        "browser.startup.homepage" = "https://www.google.com";
 
         "browser.toolbars.bookmarks.visibility" = "always";
 
         "browser.search.openintab" = true;
+        "extensions.pocket.enabled" = false;
+        "browser.newtabpage.activity-stream.section.highlights.includePocket" =
+          false;
+
+        "extensions.formautofill.creditCards.enabled" = false;
 
         # UI
         "browser.uidensity" = 0;
         "browser.theme.toolbar-theme" = 0;
         "browser.theme.content-theme" = 0;
+        "browser.uitour.enabled" = false;
+        "browser.startup.page" = 3; # Restore previous session
+        "browser.tabs.warnOnClose" = false;
+
+        # disable auto update (as updates are done through nixpkgs
+        "extensions.update.enabled" = false;
+        "extensions.update.autoUpdateDefault" = false;
+        "app.update.auto" = false;
+
+        # disable search suggestions
+        "browser.search.suggest.enabled" = false;
+        "browser.search.suggest.enabled.private" = false;
 
         # privacy
         "browser.newtabpage.activity-stream.feeds.telemetry" = false;
@@ -93,6 +112,54 @@ in {
         "experiments.enabled" = false;
         "experiments.supported" = false;
         "network.allow-experiments" = false;
+        "beacon.enabled" = false;
+        "geo.enabled" = false;
+        "browser.tabs.crashReporting.sendReport" = false;
+        "browser.aboutConfig.showWarning" = false;
+        "browser.aboutwelcome.enabled" = false;
+        "browser.shell.checkDefaultBrowser" = false;
+
+        "browser.uiCustomization.state" = builtins.toJSON {
+          placements = {
+            widget-overflow-fixed-list = [ ];
+            unified-extensions-area = [ ];
+            nav-bar = [
+              "back-button"
+              "forward-button"
+              "stop-reload-button"
+              "home-button"
+              "urlbar-container"
+
+              # Extensions
+              "keepassxc-browser_keepassxc_org-browser-action"
+              "ublock0_raymondhill_net-browser-action"
+              "addon_darkreader_org-browser-action"
+            ];
+            toolbar-menubar = [ "menubar-items" ];
+            TabsToolbar = [
+              "firefox-view-button"
+              "tabbrowser-tabs"
+              "new-tab-button"
+              "alltabs-button"
+            ];
+            PersonalToolbar = [ "personal-bookmarks" "managed-bookmarks" ];
+          };
+          seen = [
+            "developer-button"
+            "addon_darkreader_org-browser-action"
+            "keepassxc-browser_keepassxc_org-browser-action"
+            "ublock0_raymondhill_net-browser-action"
+          ];
+          dirtyAreaCache = [
+            "nav-bar"
+            "toolbar-menubar"
+            "TabsToolbar"
+            "PersonalToolbar"
+            "unified-extensions-area"
+          ];
+          currentVersion = 18;
+          newElementCount = 2;
+        };
       };
     };
   };
