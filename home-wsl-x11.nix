@@ -1,10 +1,7 @@
 # TODO: extensible machen, da vermutlich häufig benutzt !
 # SYSTEM="wsl-x11" home-manager switch --file ./home.nix --dry-run
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ config, pkgs, ... }:
+let
   shared = import ./modules/shared/shared.nix {
     inherit pkgs;
     inherit config;
@@ -14,11 +11,9 @@
     inherit pkgs;
     template = "wsl-x11";
 
-    config = {
-      username = "${shared.home.username}";
-    };
+    config = { username = "${shared.home.username}"; };
   };
-  imports = [shared sharedWsl];
+  imports = [ shared sharedWsl ];
 in {
   inherit imports;
 
@@ -46,69 +41,67 @@ in {
     };
   };
 
-   programs.firefox = {
-        enable = true;
-        package = pkgs.firefox;
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox;
 
-         profiles.default = {
+    profiles.default = {
 
-          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-                   darkreader
-                   ublock-origin
-                   startpage-private-search
-                   momentumdash
-                   keepassxc-browser
-                 ];
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        darkreader
+        ublock-origin
+        keepassxc-browser
+      ];
 
-                id = 0;
-                settings = {
-                  "extensions.autoDisableScopes" = 0;
+      id = 0;
+      settings = {
+        "extensions.autoDisableScopes" = 0;
 
-                  "browser.search.defaultenginename" = "Startpage.com - English";
-                  "browser.search.selectedEngine" = "Startpage.com - English";
-                  "browser.urlbar.placeholderName" = "Startpage.com - English";
-                  "browser.search.region" = "US";
-                  "browser.startup.homepage" = "about:blank";
-                  "browser.newtabpage.enabled" = true;
+        "browser.search.defaultenginename" = "Startpage.com - English";
+        "browser.search.selectedEngine" = "Startpage.com - English";
+        "browser.urlbar.placeholderName" = "Startpage.com - English";
+        "browser.search.region" = "US";
+        "browser.startup.homepage" = "about:blank";
+        "browser.newtabpage.enabled" = true;
 
-#                  "font.name.monospace.x-western" = "${fonts.mono.family}";
-#                  "font.name.sans-serif.x-western" = "${fonts.main.family}";
-#                  "font.name.serif.x-western" = "${fonts.serif.family}";
-#
-#                  "services.sync.username" = "stefan-machmeier@outlook.com";
+        #                  "font.name.monospace.x-western" = "${fonts.mono.family}";
+        #                  "font.name.sans-serif.x-western" = "${fonts.main.family}";
+        #                  "font.name.serif.x-western" = "${fonts.serif.family}";
+        #
+        #                  "services.sync.username" = "stefan-machmeier@outlook.com";
 
-                  "browser.toolbars.bookmarks.visibility" = "always";
+        "browser.toolbars.bookmarks.visibility" = "always";
 
-                  "browser.uidensity" = 1;
-                  "browser.search.openintab" = true;
+        "browser.uidensity" = 1;
+        "browser.search.openintab" = true;
 
-                  "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
-                  "browser.theme.toolbar-theme" = 0;
-                  "browser.theme.content-theme" = 0;
+        "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
+        "browser.theme.toolbar-theme" = 0;
+        "browser.theme.content-theme" = 0;
 
-                  "signon.rememberSignons" = true;
+        "signon.rememberSignons" = true;
 
-                  "browser.newtabpage.activity-stream.feeds.telemetry" = false;
-                  "browser.newtabpage.activity-stream.telemetry" = false;
-                  "browser.ping-centre.telemetry" = false;
-                  "toolkit.telemetry.archive.enabled" = false;
-                  "toolkit.telemetry.bhrPing.enabled" = false;
-                  "toolkit.telemetry.enabled" = false;
-                  "toolkit.telemetry.firstShutdownPing.enabled" = false;
-                  "toolkit.telemetry.hybridContent.enabled" = false;
-                  "toolkit.telemetry.newProfilePing.enabled" = false;
-                  "toolkit.telemetry.reportingpolicy.firstRun" = false;
-                  "toolkit.telemetry.shutdownPingSender.enabled" = false;
-                  "toolkit.telemetry.unified" = false;
-                  "toolkit.telemetry.updatePing.enabled" = false;
+        "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+        "browser.newtabpage.activity-stream.telemetry" = false;
+        "browser.ping-centre.telemetry" = false;
+        "toolkit.telemetry.archive.enabled" = false;
+        "toolkit.telemetry.bhrPing.enabled" = false;
+        "toolkit.telemetry.enabled" = false;
+        "toolkit.telemetry.firstShutdownPing.enabled" = false;
+        "toolkit.telemetry.hybridContent.enabled" = false;
+        "toolkit.telemetry.newProfilePing.enabled" = false;
+        "toolkit.telemetry.reportingpolicy.firstRun" = false;
+        "toolkit.telemetry.shutdownPingSender.enabled" = false;
+        "toolkit.telemetry.unified" = false;
+        "toolkit.telemetry.updatePing.enabled" = false;
 
-                  "experiments.activeExperiment" = false;
-                  "experiments.enabled" = false;
-                  "experiments.supported" = false;
-                  "network.allow-experiments" = false;
-                };
-              };
-        };
+        "experiments.activeExperiment" = false;
+        "experiments.enabled" = false;
+        "experiments.supported" = false;
+        "network.allow-experiments" = false;
+      };
+    };
+  };
 
   home.sessionVariables = {
     # WSL-X11 specific
