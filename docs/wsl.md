@@ -124,6 +124,9 @@ onedrive --synchronize --single-directory 'wsl-ubuntu-2004-test' # --dry-run
 
 - create project specific https://notion.so account ($project@fluxdev.de) and add credentials to keepass
 
+### Firefox
+- enable alle extensions in **Private Windows**
+- connect Keepass Browser Plugin to KeepassXC  
 
 ### Transform https dotfiles repo to ssh
 ```shell

@@ -47,6 +47,7 @@ in {
 
     profiles.default = {
 
+    # https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/generated-firefox-addons.nix
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         darkreader
         ublock-origin
@@ -71,10 +72,14 @@ in {
 
         "browser.search.openintab" = true;
         "extensions.pocket.enabled" = false;
-        "browser.newtabpage.activity-stream.section.highlights.includePocket" =
-          false;
+        "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
 
+        "browser.formfill.enable" = false;
+        "extensions.formautofill.addresses.enabled" = false;
+        "extensions.formautofill.available" = "off";
+        "extensions.formautofill.creditCards.available" = false;
         "extensions.formautofill.creditCards.enabled" = false;
+        "extensions.formautofill.heuristics.enabled" = false;
 
         # UI
         "browser.uidensity" = 0;
