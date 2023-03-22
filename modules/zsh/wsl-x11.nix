@@ -31,5 +31,6 @@ in {
   libreoffice = "nohup '${pkgs.libreoffice}/bin/soffice' > /dev/null 2>&1&";
   lo = "nohup '${pkgs.libreoffice}/bin/soffice' > /dev/null 2>&1&";
 
+  # TODO: test: nohup ~/Downloads/intellij/idea-IU-223.8836.41/bin/idea.sh &
   idea = "sh ~/Downloads/intellij/idea-IU-223.8836.41/bin/idea.sh";
 }

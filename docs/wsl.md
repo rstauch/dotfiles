@@ -72,7 +72,7 @@ cd scripts
 ## Install IntelliJ (ultimate) manually
 ```shell
 cd ~/projects/dotfiles
-cd scripts
+cd scripts/post
 # update intellij.sh with latest version if available
 ./intellij.sh
 
