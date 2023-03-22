@@ -55,32 +55,26 @@ in {
 
       id = 0;
       settings = {
-        "extensions.autoDisableScopes" = 0;
+        "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
+        "signon.rememberSignons" = false;
 
-        "browser.search.defaultenginename" = "Startpage.com - English";
-        "browser.search.selectedEngine" = "Startpage.com - English";
-        "browser.urlbar.placeholderName" = "Startpage.com - English";
-        "browser.search.region" = "US";
+        # "services.sync.username" = "stefan-machmeier@outlook.com";
+
+        # disable new-tab page
+        "browser.newtabpage.enabled" = false;
+
         "browser.startup.homepage" = "about:blank";
-        "browser.newtabpage.enabled" = true;
-
-        #                  "font.name.monospace.x-western" = "${fonts.mono.family}";
-        #                  "font.name.sans-serif.x-western" = "${fonts.main.family}";
-        #                  "font.name.serif.x-western" = "${fonts.serif.family}";
-        #
-        #                  "services.sync.username" = "stefan-machmeier@outlook.com";
 
         "browser.toolbars.bookmarks.visibility" = "always";
 
-        "browser.uidensity" = 1;
         "browser.search.openintab" = true;
 
-        "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
+        # UI
+        "browser.uidensity" = 0;
         "browser.theme.toolbar-theme" = 0;
         "browser.theme.content-theme" = 0;
 
-        "signon.rememberSignons" = true;
-
+        # privacy
         "browser.newtabpage.activity-stream.feeds.telemetry" = false;
         "browser.newtabpage.activity-stream.telemetry" = false;
         "browser.ping-centre.telemetry" = false;
