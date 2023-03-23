@@ -104,43 +104,27 @@ onedrive
 - sync onedrive with command: `os`
 - create project dir in home directory to be synced, i.e: `mkdir -p ~/OneDrive/TestProject`
 - create keepass vault in project dir if not already downloaded from sync
-  - store vault password in 1Password
-  - store username credentials in vault
-  - store root credentials in vault
-- sync onedrive with command: `os`
+  - store vault password in (host) *1Password*
+  - store username credentials in Keepass vault
+  - store root credentials in Keepass vault
+- sync onedrive with command: `os` or start monitoring with `osm`
 
 
 ### Firefox
 - log into Firefox and enable settings sync
-  - save Firefox credentials to Keepass
-- enable alle extensions in **Private Windows**
+  - save Firefox credentials to Keepass vault
+- enable alle extensions in **Private Windows** if required
 - connect Keepass Browser Plugin to KeepassXC  
 
+### Other
+- create project specific https://notion.so account (use project email address) and add credentials to keepass vault
 
 ### Apply Updates
 - edit configuration: `dot`
 - run `hmu` oder `home-manager switch`
 
----
-
-
-offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet
-
-```shell
-# create keepass vault
-printf "DB_PWD\nDB_PWD" | keepassxc-cli db-create -p ~/OneDrive/wsl-ubuntu-2004-test/database.kdbx
-
-# add keepass entry
-printf "DB_PWD\nENTRY_PWD" | keepassxc-cli add ~/OneDrive/wsl-ubuntu-2004-test/database.kdbx --username "user_name" -p "entry_name"
-```
-
-
-
-
-- create project specific https://notion.so account ($project@fluxdev.de) and add credentials to keepass
-
-
 ### Transform https dotfiles repo to ssh
+- required as no ssh key is setup at time of initial cloning
 ```shell
 # verify ~/.ssh/id_rsa is set up
 git remote remove origin
@@ -167,4 +151,17 @@ wsl.exe gzip -9 wsl-ubuntu-2004-test_backup.tar
 # Restore
 # wsl --import DISTRO-NAME INSTALL-LOCATION PATH\FILE-NAME.tar
 wsl --import wsl-ubuntu-2004-test D:\code\wsl\wsl-ubuntu-2004-test F:\backup\wsl-ubuntu-2004-test_backup.tar
+```
+
+
+---
+
+offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet
+
+```shell
+# create keepass vault
+printf "DB_PWD\nDB_PWD" | keepassxc-cli db-create -p ~/OneDrive/wsl-ubuntu-2004-test/database.kdbx
+
+# add keepass entry
+printf "DB_PWD\nENTRY_PWD" | keepassxc-cli add ~/OneDrive/wsl-ubuntu-2004-test/database.kdbx --username "user_name" -p "entry_name"
 ```

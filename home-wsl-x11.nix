@@ -47,6 +47,7 @@ in {
     # crashes, manual install works better, see scripts/post/intellij.sh
     # jetbrains.idea-ultimate
 
+    # TODO: prüfen ob sich das nicht als service starten lässt (um monitoring zu enablen)
     onedrive
 
     keepassxc
