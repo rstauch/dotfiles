@@ -1,4 +1,3 @@
-# TODO: extensible machen, da vermutlich häufig benutzt !
 # SYSTEM="wsl-x11" home-manager switch --file ./home.nix --dry-run
 {
   config,

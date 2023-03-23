@@ -120,7 +120,7 @@ onedrive
 - create project specific https://notion.so account (use project email address) and add credentials to keepass vault
 
 ### Apply Updates
-- edit configuration: `dot`
+- edit configuration: `dot` or `hme`
 - run `hmu` oder `home-manager switch`
 
 ### Transform https dotfiles repo to ssh
@@ -156,7 +156,7 @@ wsl --import wsl-ubuntu-2004-test D:\code\wsl\wsl-ubuntu-2004-test F:\backup\wsl
 
 ---
 
-offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet
+TODO: offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet
 
 ```shell
 # create keepass vault
