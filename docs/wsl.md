@@ -121,12 +121,8 @@ printf "DB_PWD\nDB_PWD" | keepassxc-cli db-create -p ~/OneDrive/wsl-ubuntu-2004-
 printf "DB_PWD\nENTRY_PWD" | keepassxc-cli add ~/OneDrive/wsl-ubuntu-2004-test/database.kdbx --username "user_name" -p "entry_name"
 ```
 
-- configure keepass to work with firefox (**möglicherweise automatisierbar**)
 - manage firefox 
-  - create firefox account and store credentials in keepass 
-  - install plugins (**möglicherweise automatisierbar**)
-  - connect keepass and disable firefox password manager (**möglicherweise automatisierbar**)
-  - make default browser (**möglicherweise automatisierbar**)
+  - create firefox account and store pot. credentials in keepass
 - login to onedrive
 ```shell
 # run commandd
