@@ -19,6 +19,7 @@
   };
   firefox = import ./modules/firefox.nix {
     inherit pkgs;
+    email = "project@fluxdev.de";
   };
 
   imports = [shared sharedWsl firefox];

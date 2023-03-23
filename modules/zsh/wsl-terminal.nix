@@ -11,4 +11,6 @@ in {
 
   pbcopy = "xclip -selection clipboard";
   pbpaste = "xclip -selection clipboard -o";
+
+  os = "onedrive --synchronize";
 }

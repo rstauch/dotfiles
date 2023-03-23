@@ -93,7 +93,26 @@ cd scripts/post
 - enable Docker Integration and verify with `docker ps -a` and `docker run hello-world`
   - ggf. einfach Docker Setting togglen und un-togglen, danach Shell neu starten
 
+### OneDrive
+- login to onedrive
+```shell
+onedrive 
+
+# URL im Browser aufrufen
+# Code aus URL kopieren
+```
+- sync onedrive with command: `os`
+- create project dir in home directory to be synced, i.e: `mkdir -p ~/OneDrive/TestProject`
+- create keepass vault in project dir if not already downloaded from sync
+  - store vault password in 1Password
+  - store username credentials in vault
+  - store root credentials in vault
+- sync onedrive with command: `os`
+
+
 ### Firefox
+- log into Firefox and enable settings sync
+  - save Firefox credentials to Keepass
 - enable alle extensions in **Private Windows**
 - connect Keepass Browser Plugin to KeepassXC  
 
@@ -105,13 +124,7 @@ cd scripts/post
 ---
 
 
-offene Punkte: OneDrive?<->Keepass?, ?Firefox?<->Keepass; vereinheitlichung WSL Script + nix; Darwin; Cheatsheet
-
-
-- create keepass vault in onedrive default dir (~/OneDrive) (**möglicherweise automatisierbar**)
-
-=> **? Problem ?** falls auf mehreren Rechner der selbe WSL Name verwendet wird, wird dann onedrive content überschrieben ?
-  => erst onedrive download, dann ggf. neue Einträge anlegen
+offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet
 
 ```shell
 # create keepass vault
@@ -121,18 +134,8 @@ printf "DB_PWD\nDB_PWD" | keepassxc-cli db-create -p ~/OneDrive/wsl-ubuntu-2004-
 printf "DB_PWD\nENTRY_PWD" | keepassxc-cli add ~/OneDrive/wsl-ubuntu-2004-test/database.kdbx --username "user_name" -p "entry_name"
 ```
 
-- manage firefox 
-  - create firefox account and store pot. credentials in keepass
-- login to onedrive
-```shell
-# run commandd
-onedrive 
-# URL im Browser aufrufen
-# Code aus URL kopieren
 
-# perform single-directory sync: 
-onedrive --synchronize --single-directory 'wsl-ubuntu-2004-test' # --dry-run
-```
+
 
 - create project specific https://notion.so account ($project@fluxdev.de) and add credentials to keepass
 

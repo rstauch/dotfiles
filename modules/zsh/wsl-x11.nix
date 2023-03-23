@@ -33,4 +33,6 @@ in {
 
   # TODO: test: nohup ~/Downloads/intellij/idea-IU-223.8836.41/bin/idea.sh &
   idea = "sh ~/Downloads/intellij/idea-IU-223.8836.41/bin/idea.sh";
+
+  os = "onedrive --synchronize";
 }
