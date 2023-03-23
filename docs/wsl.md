@@ -88,10 +88,26 @@ cd scripts/post
 ```
 
 ## Post-Install Steps
-offene Punkte: OneDrive?<->Keepass?, ?Firefox?<->Keepass; vereinheitlichung WSL Script + nix; Darwin; Cheatsheet
 
+### Docker
 - enable Docker Integration and verify with `docker ps -a` and `docker run hello-world`
   - ggf. einfach Docker Setting togglen und un-togglen, danach Shell neu starten
+
+### Firefox
+- enable alle extensions in **Private Windows**
+- connect Keepass Browser Plugin to KeepassXC  
+
+
+### Apply Updates
+- edit configuration: `dot`
+- run `hmu` oder `home-manager switch`
+
+---
+
+
+offene Punkte: OneDrive?<->Keepass?, ?Firefox?<->Keepass; vereinheitlichung WSL Script + nix; Darwin; Cheatsheet
+
+
 - create keepass vault in onedrive default dir (~/OneDrive) (**möglicherweise automatisierbar**)
 
 => **? Problem ?** falls auf mehreren Rechner der selbe WSL Name verwendet wird, wird dann onedrive content überschrieben ?
@@ -124,9 +140,6 @@ onedrive --synchronize --single-directory 'wsl-ubuntu-2004-test' # --dry-run
 
 - create project specific https://notion.so account ($project@fluxdev.de) and add credentials to keepass
 
-### Firefox
-- enable alle extensions in **Private Windows**
-- connect Keepass Browser Plugin to KeepassXC  
 
 ### Transform https dotfiles repo to ssh
 ```shell

@@ -6,9 +6,10 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
   platform = builtins.getEnv "SYSTEM";
-  selectedConfig = import ./home-${platform}.nix {inherit config pkgs;};
+  selectedConfig = import ./home-${platform}.nix {inherit config pkgs lib;};
 in
   selectedConfig

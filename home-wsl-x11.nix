@@ -1,7 +1,11 @@
 # TODO: extensible machen, da vermutlich häufig benutzt !
 # SYSTEM="wsl-x11" home-manager switch --file ./home.nix --dry-run
-{ config, pkgs, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   shared = import ./modules/shared/shared.nix {
     inherit pkgs;
     inherit config;
@@ -11,11 +15,28 @@ let
     inherit pkgs;
     template = "wsl-x11";
 
-    config = { username = "${shared.home.username}"; };
+    config = {username = "${shared.home.username}";};
   };
-  imports = [ shared sharedWsl ];
+  imports = [shared sharedWsl];
 in {
   inherit imports;
+
+  home.activation = {
+    # setup keepass for browser integration
+    keepass_ini = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      # Modify Browser section
+      $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set ~/.config/keepassxc/keepassxc.ini Browser AllowExpiredCredentials true
+
+      $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set ~/.config/keepassxc/keepassxc.ini Browser CustomProxyLocation ""
+
+      $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set ~/.config/keepassxc/keepassxc.ini Browser Enabled true
+
+      # Modify Security section
+      $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set ~/.config/keepassxc/keepassxc.ini Security ClearClipboardTimeout 90
+
+      $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set ~/.config/keepassxc/keepassxc.ini Security EnableCopyOnDoubleClick true
+    '';
+  };
 
   home.packages = with pkgs; [
     # crashes, manual install works better, see scripts/post/intellij.sh
@@ -32,6 +53,8 @@ in {
     hunspell
     hunspellDicts.de_DE
     hunspellDicts.en_US
+
+    crudini
   ];
 
   programs.google-chrome = {
@@ -41,13 +64,13 @@ in {
     };
   };
 
+  # TODO: move to import (like vscode)
   programs.firefox = {
     enable = true;
     package = pkgs.firefox;
 
     profiles.default = {
-
-    # https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/generated-firefox-addons.nix
+      # https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/generated-firefox-addons.nix
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         darkreader
         ublock-origin
@@ -126,8 +149,8 @@ in {
 
         "browser.uiCustomization.state" = builtins.toJSON {
           placements = {
-            widget-overflow-fixed-list = [ ];
-            unified-extensions-area = [ ];
+            widget-overflow-fixed-list = [];
+            unified-extensions-area = [];
             nav-bar = [
               "back-button"
               "forward-button"
@@ -140,14 +163,14 @@ in {
               "ublock0_raymondhill_net-browser-action"
               "addon_darkreader_org-browser-action"
             ];
-            toolbar-menubar = [ "menubar-items" ];
+            toolbar-menubar = ["menubar-items"];
             TabsToolbar = [
               "firefox-view-button"
               "tabbrowser-tabs"
               "new-tab-button"
               "alltabs-button"
             ];
-            PersonalToolbar = [ "personal-bookmarks" "managed-bookmarks" ];
+            PersonalToolbar = ["personal-bookmarks" "managed-bookmarks"];
           };
           seen = [
             "developer-button"
