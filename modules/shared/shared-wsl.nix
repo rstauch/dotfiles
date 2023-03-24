@@ -5,6 +5,42 @@
   template,
   ...
 }: let
+  PROJECT_ROOT = builtins.toString ./../../.;
+
+  apply_sh_content = ''
+    #!/bin/bash
+    # AUTO GENERATED FILE -> DO NOT CHANGE MANUALLY
+    set -e
+
+    # behelf
+    ssl_private_key=$(cat ~/.ssh/id_rsa)
+
+    ### actual
+    if [[ -z "$ssl_private_key" ]]; then
+      echo "Please enter the private key (use '#' on an empty line to finish):"
+      if ! read -r -d '#' ssl_private_key; then
+        echo "Failed to read private key. Exiting."
+        exit 1
+      fi
+    fi
+
+    # # Exit the script if the clipboard content is empty
+    if [[ -z "$ssl_private_key" ]]; then
+       echo "ssl_private_key content is empty. Exiting."
+       exit 1
+     fi
+     echo "ssl_private_key content is NOT empty. Continue."
+    ### end of actual
+
+    # Add a newline to the end of the clipboard content
+    ssl_private_key="$ssl_private_key"$'\n'
+
+    # Set the environment variable using the clipboard content
+    SYSTEM="${template}" SSH_PRV_KEY="$ssl_private_key" home-manager switch -b backup --file ./../home.nix
+
+    echo "SUCCESS -> restart shell for changes to take effect"
+  '';
+
   platform = "x86_64-linux";
 
   vscode = import ./../vscode/vscode.nix {
@@ -27,6 +63,11 @@
 in {
   inherit imports;
 
+  # generate apply.sh programatically, reason: SYSTEM="${template}
+  home.file = {
+    "${PROJECT_ROOT}/scripts/apply.sh".text = apply_sh_content;
+  };
+
   home.sessionVariables = {
   };
 
@@ -38,6 +79,10 @@ in {
   ];
 
   home.activation = {
+    chmod = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      chmod a+x ${PROJECT_ROOT}/scripts/*.sh
+    '';
+
     # add known hosts
     known_hosts = lib.hm.dag.entryAfter ["writeBoundary"] ''
        hosts=(

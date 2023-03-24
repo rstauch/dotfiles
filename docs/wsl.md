@@ -156,7 +156,10 @@ wsl --import wsl-ubuntu-2004-test D:\code\wsl\wsl-ubuntu-2004-test F:\backup\wsl
 
 ---
 
-TODO: offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet, Readme, hmu mit profil spezifischen parameter, wsl script muss keepass ja nicht nach onedrive packen
+TODO: offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet, Readme,  wsl script muss keepass ja nicht nach onedrive packen
+? vscode plugin scratchpad
+? vscode keybindings wie intellij
+? systemd onedrive monitoring
 
 ```shell
 # create keepass vault
