@@ -79,10 +79,6 @@ in {
   ];
 
   home.activation = {
-    chmod = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      chmod a+x ${PROJECT_ROOT}/scripts/*.sh
-    '';
-
     # add known hosts
     known_hosts = lib.hm.dag.entryAfter ["writeBoundary"] ''
        hosts=(
