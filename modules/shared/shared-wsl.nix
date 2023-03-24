@@ -12,13 +12,13 @@
     # AUTO GENERATED FILE -> DO NOT CHANGE MANUALLY
     set -e
 
-    ssl_private_key=$(cat ~/.ssh/id_rsa 2>/dev/null || true)
+    ssl_private_key=$(cat $HOME/.ssh/id_rsa 2>/dev/null || true)
 
     # Check if ssl_private_key is valid
-    if ssh-keygen -y -f ~/.ssh/id_rsa >/dev/null 2>&1; then
+    if ssh-keygen -y -f $HOME/.ssh/id_rsa >/dev/null 2>&1; then
       echo "Private key is valid. Proceeding..."
     else
-      echo "Private key is invalid. Please ensure that ~/.ssh/id_rsa exists and is a valid private key."
+      echo "Private key is invalid. Please ensure that $HOME/.ssh/id_rsa exists and is a valid private key."
       # Prompt the user to enter the private key
       echo "Please enter the private key (use '#' on an empty line to finish):"
       if ! read -r -d '#' ssl_private_key; then
@@ -95,13 +95,13 @@ in {
        )
 
        # Check if known_hosts file exists, if not create it
-       if [ ! -f ~/.ssh/known_hosts ]; then
-           touch ~/.ssh/known_hosts
+       if [ ! -f $HOME/.ssh/known_hosts ]; then
+           touch $HOME/.ssh/known_hosts
        fi
 
        # Loop through the hosts array and add them to the known_hosts file if not already present
       for host in ''${hosts[@]}; do
-         if ! grep -qF "$host" ~/.ssh/known_hosts; then
+         if ! grep -qF "$host" $HOME/.ssh/known_hosts; then
            echo "Adding $host to known_hosts file"
            $DRY_RUN_CMD ${pkgs.openssh}/bin/ssh-keyscan $host >> $HOME/.ssh/known_hosts
          fi

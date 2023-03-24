@@ -47,7 +47,7 @@ systemctl list-unit-files --type=service
 
 ## Install nix home-manager
 ```shell
-mkdir -p ~/projects && cd ~/projects
+mkdir -p $HOME/projects && cd $HOME/projects
 git clone https://github.com/rstauch/dotfiles.git
 cd dotfiles/scripts
 
@@ -63,7 +63,7 @@ cd dotfiles/scripts
 
 ### Install IntelliJ (ultimate) manually
 ```shell
-cd ~/projects/dotfiles
+cd $HOME/projects/dotfiles
 cd scripts/post
 # update intellij.sh with latest version if available
 ./intellij.sh
@@ -92,7 +92,7 @@ onedrive
 # Code aus URL kopieren
 ```
 - sync onedrive with command: `os`
-- create project dir in home directory to be synced, i.e: `mkdir -p ~/OneDrive/TestProject`
+- create project dir in home directory to be synced, i.e: `mkdir -p $HOME/OneDrive/TestProject`
 - create keepass vault in project dir if not already downloaded from sync
   - store vault password in (host) *1Password*
   - store username credentials in Keepass vault
@@ -113,7 +113,7 @@ onedrive
 ### Transform https dotfiles repo to ssh
 - required as no ssh key is setup at time of initial cloning
 ```shell
-# verify ~/.ssh/id_rsa is set up
+# verify $HOME/.ssh/id_rsa is set up
 git remote remove origin
 git remote add origin git@github.com:rstauch/dotfiles.git
 git fetch
@@ -147,7 +147,7 @@ wsl --import wsl-ubuntu-2004-test D:\code\wsl\wsl-ubuntu-2004-test F:\backup\wsl
 ### Switch home-profile
 ```shell
 # ggf. scripts/uninstall.sh ausführen
-# ggf. daten in ~/.config etc. löschen
+# ggf. daten in $HOME/.config etc. löschen
 sh scripts/install.sh
 # enter different template name than before and open a new shell after successful installation
 ```
@@ -164,8 +164,8 @@ TODO: offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet, Rea
 
 ```shell
 # create keepass vault
-printf "DB_PWD\nDB_PWD" | keepassxc-cli db-create -p ~/OneDrive/wsl-ubuntu-2004-test/database.kdbx
+printf "DB_PWD\nDB_PWD" | keepassxc-cli db-create -p $HOME/OneDrive/wsl-ubuntu-2004-test/database.kdbx
 
 # add keepass entry
-printf "DB_PWD\nENTRY_PWD" | keepassxc-cli add ~/OneDrive/wsl-ubuntu-2004-test/database.kdbx --username "user_name" -p "entry_name"
+printf "DB_PWD\nENTRY_PWD" | keepassxc-cli add $HOME/OneDrive/wsl-ubuntu-2004-test/database.kdbx --username "user_name" -p "entry_name"
 ```
