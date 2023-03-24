@@ -80,6 +80,7 @@ in {
   # install dependencies shared between all wsl instances
   home.packages = with pkgs; [
     openssh
+    onedrive
   ];
 
   home.activation = {
@@ -106,5 +107,15 @@ in {
          fi
        done
     '';
+  };
+
+  # führt ggf. zu problemen, evtl mit bash verknüpfung starten
+  # systemctl --user restart onedrive.service
+  systemd.user.services.onedrive = {
+    Unit.Description = "Start onedrive";
+    Unit.After = ["network.target"];
+    Unit.ConditionPathExists = "$HOME/.config/onedrive/refresh_token";
+    Service.ExecStart = "${pkgs.lib.getExe pkgs.onedrive} --monitor";
+    Install.WantedBy = ["default.target"];
   };
 }

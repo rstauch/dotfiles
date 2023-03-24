@@ -160,6 +160,7 @@ TODO: offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet, Rea
 ? direnv
 ? python
 ? evtl chrome/firefox ui rot um nsfw zu verdeutlichen
+? todos
 
 ```shell
 # create keepass vault

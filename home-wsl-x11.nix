@@ -48,10 +48,6 @@ in {
     # crashes, manual install works better, see scripts/post/intellij.sh
     # jetbrains.idea-ultimate
 
-    # TODO: onedrive nach wsl-shared legen
-    # TODO: prüfen ob sich das nicht als service starten lässt (um monitoring zu enablen)
-    onedrive
-
     keepassxc
     postman
     xdg-utils
@@ -82,15 +78,6 @@ in {
     XCURSOR_SIZE = 16;
     GDK_BACKEND = "x11";
     LIBGL_ALWAYS_INDIRECT = "1";
-  };
-
-  # führt ggf. zu problemen
-  systemd.user.services.onedrive = {
-    Unit.Description = "Start onedrive";
-    Unit.After = ["network.target"];
-    Unit.ConditionPathExists = "$HOME/.config/onedrive/refresh_token";
-    Service.ExecStart = "${pkgs.lib.getExe pkgs.onedrive} --monitor";
-    Install.WantedBy = ["default.target"];
   };
 
   # set specific properties
