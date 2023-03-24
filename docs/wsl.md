@@ -159,7 +159,6 @@ TODO: offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet, Rea
 ? systemd onedrive monitoring
 ? direnv
 ? python
-firefox enable private window extension (entsprechende datei anlegen) <- unterschied mit meld untersuchen
 ? meld
 
 ```shell

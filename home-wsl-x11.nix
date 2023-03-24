@@ -19,6 +19,7 @@
   };
   firefox = import ./modules/firefox.nix {
     inherit pkgs;
+    inherit lib;
     email = "project@fluxdev.de";
   };
 

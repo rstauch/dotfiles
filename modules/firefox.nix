@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   email,
   ...
 }: let
@@ -12,8 +13,6 @@
       if email != null
       then "RS  ${email}"
       else null;
-
-    # "services.sync.username" = "RS  project@fluxdev.de";
 
     # disable new-tab page
     "browser.newtabpage.enabled" = false;
@@ -141,5 +140,42 @@ in {
       id = 0;
       settings = ff_settings;
     };
+  };
+
+  home.activation = {
+    allow_extension_in_private_mode = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      # Set the path to the JSON file
+      subdir="$HOME/.mozilla/firefox/default"
+      $DRY_RUN_CMD mkdir -p "$subdir"
+      json_file="$subdir/extension-preferences.json"
+
+      # Check if the JSON file exists
+      if [ ! -f "$json_file" ]; then
+        # If the JSON file doesn't exist, create a new empty object
+        echo "create new $json_file"
+        $DRY_RUN_CMD echo '{}' > "$json_file"
+      fi
+
+      # Get the existing data from the JSON file
+      existing_data=$(cat "$json_file")
+
+      # extensions to be allowed in private windows
+      keys=(
+        "addon@darkreader.org"
+        "keepassxc-browser@keepassxc.org"
+        "uBlock0@raymondhill.net"
+      )
+
+      # Loop through the keys and merge them with the existing data
+      for key in "''${keys[@]}"
+      do
+        new_data="{\"$key\":{\"permissions\":[\"internal:privateBrowsingAllowed\"],\"origins\":[]}}"
+        merged_data=$(${pkgs.lib.getExe pkgs.jq} -n --argjson existing "$existing_data" --argjson newdata "$new_data" '$existing + $newdata')
+        existing_data="$merged_data"
+      done
+
+      # Overwrite the JSON file with the merged data
+      $DRY_RUN_CMD echo "$merged_data" > "$json_file"
+    '';
   };
 }
