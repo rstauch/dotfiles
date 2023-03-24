@@ -159,7 +159,7 @@ TODO: offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet, Rea
 ? systemd onedrive monitoring
 ? direnv
 ? python
-? meld
+? evtl chrome/firefox ui rot um nsfw zu verdeutlichen
 
 ```shell
 # create keepass vault
