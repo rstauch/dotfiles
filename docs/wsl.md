@@ -98,6 +98,7 @@ onedrive
   - store username credentials in Keepass vault
   - store root credentials in Keepass vault
 - sync onedrive with command: `os` or start monitoring with `osm`
+- load monitor service: `systemctl --user restart onedrive.service`
 
 
 ### Firefox
@@ -156,7 +157,6 @@ sh scripts/install.sh
 TODO: offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet, Readme,  wsl script muss keepass ja nicht nach onedrive packen
 ? vscode plugin scratchpad
 ? vscode keybindings wie intellij
-? systemd onedrive monitoring
 ? direnv
 ? python
 ? evtl chrome/firefox ui rot um nsfw zu verdeutlichen
