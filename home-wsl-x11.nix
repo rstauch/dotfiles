@@ -12,6 +12,7 @@
   };
   sharedWsl = import ./modules/shared/shared-wsl.nix {
     inherit pkgs;
+    inherit lib;
     template = "wsl-x11";
 
     config = {username = "${shared.home.username}";};
@@ -64,9 +65,7 @@ in {
 
   programs.google-chrome = {
     enable = true;
-    package = pkgs.google-chrome.override {
-      commandLineArgs = "--no-first-run --no-default-browser-check";
-    };
+    package = pkgs.google-chrome;
   };
 
   home.sessionVariables = {

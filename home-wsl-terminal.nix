@@ -2,6 +2,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
   shared = import ./modules/shared/shared.nix {
@@ -11,6 +12,7 @@
   };
   sharedWsl = import ./modules/shared/shared-wsl.nix {
     inherit pkgs;
+    inherit lib;
     template = "wsl-terminal";
     config = {
       username = "${shared.home.username}";
