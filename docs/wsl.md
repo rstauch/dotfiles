@@ -160,6 +160,8 @@ TODO: offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet, Rea
 ? vscode plugin scratchpad
 ? vscode keybindings wie intellij
 ? systemd onedrive monitoring
+? direnv
+? python
 
 ```shell
 # create keepass vault
