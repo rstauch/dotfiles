@@ -48,6 +48,7 @@ in {
     # crashes, manual install works better, see scripts/post/intellij.sh
     # jetbrains.idea-ultimate
 
+    # TODO: onedrive nach wsl-shared legen
     # TODO: prüfen ob sich das nicht als service starten lässt (um monitoring zu enablen)
     onedrive
 
@@ -82,6 +83,45 @@ in {
     GDK_BACKEND = "x11";
     LIBGL_ALWAYS_INDIRECT = "1";
   };
+
+  systemd.user.services.onedrive = {
+    Unit.Description = "Start onedrive";
+    Unit.After = ["network.target"];
+    Service.ExecStart = "${pkgs.lib.getExe pkgs.onedrive} --monitor";
+    Install.WantedBy = ["default.target"];
+  };
+
+  # systemd.user.services.onedrive = {
+  #   Unit = {
+  #     Description = "Start onedrive";
+  #     # PartOf = "graphical-session.target";
+  #   };
+
+  #   Service = {
+  #     ExecStart = "${pkgs.lib.getExe pkgs.onedrive} --monitor";
+  #     # BusName = "org.kde.KIOFuse";
+  #     # Slice = "background.slice";
+  #   };
+  # };
+
+  # systemd.user.services.onedrive = {
+  #   enable = true;
+  #   description = "Start onedrive";
+  #   script = "${pkgs.lib.getExe pkgs.onedrive} --monitor";
+  #   wantedBy = ["multi-user.target"];
+  #   after = ["greetd.service"];
+  # };
+
+  # systemd.services.foldingathome = {
+  #   after = ["network.target"];
+  #   wantedBy = ["multi-user.target"];
+  #   preStart = ''
+  #     mkdir -m 0755 -p ${stateDir}
+  #     chown ${fahUser} ${stateDir}
+  #     cp -f ${pkgs.writeText "client.cfg" cfg.config} ${stateDir}/client.cfg
+  #   '';
+  #   script = "${pkgs.su}/bin/su -s ${pkgs.stdenv.shell} ${fahUser} -c 'cd ${stateDir}; ${pkgs.foldingathome}/bin/fah6'";
+  # };
 
   # systemd.user.services.onedrive = {
   #   Unit.Description = "Start onedrive sync";
