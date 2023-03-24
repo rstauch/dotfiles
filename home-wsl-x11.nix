@@ -60,6 +60,10 @@ in {
     hunspellDicts.de_DE
     hunspellDicts.en_US
 
+    # Visual diff and merge tool
+    meld
+
+    # manage ini files
     crudini
   ];
 
