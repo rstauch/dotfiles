@@ -26,7 +26,7 @@ Create shortcut: `"C:\Program Files\VcXsrv\xlaunch.exe" -run "C:\code\config.xla
 <XLaunch WindowMode="MultiWindow" ClientMode="NoClient" LocalClient="False" Display="-1" LocalProgram="xcalc" RemoteProgram="xterm" RemotePassword="" PrivateKey="" RemoteHost="" RemoteUser="" XDMCPHost="" XDMCPBroadcast="False" XDMCPIndirect="False" Clipboard="True" ClipboardPrimary="False" ExtraParams="" Wgl="False" DisableAC="True" XDMCPTerminate="False"/>
 ```
 **Note**: Ggf. Windows Firewall Freigaben (**Inbound Rules**) für *VcXsrv* anlegen.
-
+  
 
 ### Enable systemd (already done via WSL2-Create-Distro)
 - see https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/
@@ -50,26 +50,18 @@ systemctl list-unit-files --type=service
 mkdir -p ~/projects && cd ~/projects
 git clone https://github.com/rstauch/dotfiles.git
 cd dotfiles/scripts
+
+# enter private key and template file name
 ./install.sh
 # open new shell to apply changes
-```
 
-## Apply home-manager configuration
-```shell
-cd ~/projects/dotfiles
-cd scripts
-
-# will run home-wsl-x11.nix
-./apply.sh
-
-# enter ssh private key from 1password and confirm with '#'
-
-# exit shell and open new shell from shortcut:
 # Windows shortcut: C:\Windows\System32\wsl.exe --distribution ${distribution_name} -u ${username} --cd "~" -e bash -lc zsh
 # ie: C:\Windows\System32\wsl.exe --distribution wsl-ubuntu-2004-test -u rstauch --cd "~" -e bash -lc zsh
 ```
 
-## Install IntelliJ (ultimate) manually
+## Post-Install Steps
+
+### Install IntelliJ (ultimate) manually
 ```shell
 cd ~/projects/dotfiles
 cd scripts/post
@@ -86,8 +78,6 @@ cd scripts/post
 
 # start IntelliJ from anywhere with command: idea (zsh alias)
 ```
-
-## Post-Install Steps
 
 ### Docker
 - enable Docker Integration and verify with `docker ps -a` and `docker run hello-world`
@@ -119,10 +109,6 @@ onedrive
 ### Other
 - create project specific https://notion.so account (use project email address) and add credentials to keepass vault
 
-### Apply Updates
-- edit configuration: `dot` or `hme`
-- run `hmu` oder `home-manager switch`
-
 ### Transform https dotfiles repo to ssh
 - required as no ssh key is setup at time of initial cloning
 ```shell
@@ -133,7 +119,7 @@ git fetch
 git branch --set-upstream-to=origin/master master
 ```
 
-### Install Updates
+### Install System Updates
 ```shell
 sudo apt-get update
 sudo apt-get upgrade
@@ -153,6 +139,17 @@ wsl.exe gzip -9 wsl-ubuntu-2004-test_backup.tar
 wsl --import wsl-ubuntu-2004-test D:\code\wsl\wsl-ubuntu-2004-test F:\backup\wsl-ubuntu-2004-test_backup.tar
 ```
 
+### Apply Home-Manager Updates
+- edit configuration: `dot` or `hme`
+- run `hmu` oder `home-manager switch`
+
+### Switch home-profile
+```shell
+# ggf. scripts/uninstall.sh ausführen
+# ggf. daten in ~/.config etc. löschen
+sh scripts/install.sh
+# enter different template name than before and open a new shell after successful installation
+```
 
 ---
 
@@ -162,6 +159,8 @@ TODO: offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet, Rea
 ? systemd onedrive monitoring
 ? direnv
 ? python
+firefox enable private window extension (entsprechende datei anlegen) <- unterschied mit meld untersuchen
+? meld
 
 ```shell
 # create keepass vault

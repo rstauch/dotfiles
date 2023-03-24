@@ -46,6 +46,9 @@ in {
     unzip
     xz
 
+    # Visual diff and merge tool
+    meld
+
     # kubectl
     # kubernetes-helm
 
