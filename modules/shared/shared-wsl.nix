@@ -7,6 +7,14 @@
 }: let
   PROJECT_ROOT = builtins.toString ./../../.;
 
+  custom_python_packages = python-packages:
+    with python-packages; [
+      numpy
+      pandas
+      # pip
+    ];
+  custom_python_enviroment = pkgs.python311.withPackages custom_python_packages;
+
   apply_sh_content = ''
     #!/bin/bash
     # AUTO GENERATED FILE -> DO NOT CHANGE MANUALLY
@@ -75,10 +83,15 @@ in {
   home.homeDirectory = "/home/${config.username}";
 
   # install dependencies shared between all wsl instances
-  home.packages = with pkgs; [
-    openssh
-    onedrive
-  ];
+  home.packages = with pkgs;
+    [
+      openssh
+      onedrive
+
+      # see https://determinate.systems/posts/nix-home-env
+      direnv
+    ]
+    ++ [custom_python_enviroment];
 
   home.activation = {
     known_hosts = lib.hm.dag.entryAfter ["writeBoundary"] ''

@@ -162,9 +162,6 @@ TODO: offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet, Rea
 ? vscode plugin scratchpad
 ? vscode keybindings wie intellij
 ? direnv
-? python
-? evtl chrome/firefox ui rot um nsfw zu verdeutlichen
-? todos
 
 ```shell
 # create keepass vault
