@@ -8,9 +8,9 @@
     This script will do just that. It creates a WSL distribution from a tarball file,
     and optionally creates a user and adds it to a group (sudo by default).
 .EXAMPLE
-    Create-Linux-Distro.ps1 -INPUT_FILENAME focal-server-cloudimg-amd64-wsl.rootfs.tar.gz -OUTPUT_DIRNAME "%LOCALAPPDATA%/ubuntu2004-1" -OUTPUT_DISTRONAME ubuntu2004-1 -CREATE_USER $true -CREATE_USER_USERNAME test1 -ADD_USER_TO_GROUP $true -ADD_USER_TO_GROUP_NAME sudo
+    Create-Linux-Distro.ps1 -INPUT_FILENAME focal-server-cloudimg-amd64-wsl.rootfs.tar.gz -OUTPUT_DIRNAME "%LOCALAPPDATA%/ubuntu2004-1" -OUTPUT_DISTRONAME ubuntu2004-1 -CREATE_USER_USERNAME test1 -ADD_USER_TO_GROUP_NAME sudo
 .EXAMPLE
-    Create-Linux-Distro.ps1 -INPUT_FILENAME focal-server-cloudimg-amd64-wsl.rootfs.tar.gz -OUTPUT_DIRNAME "" -OUTPUT_DISTRONAME DISTRONAME -CREATE_USER $true -CREATE_USER_USERNAME test1 -ADD_USER_TO_GROUP $true -ADD_USER_TO_GROUP_NAME blabla
+    Create-Linux-Distro.ps1 -INPUT_FILENAME focal-server-cloudimg-amd64-wsl.rootfs.tar.gz -OUTPUT_DIRNAME "" -OUTPUT_DISTRONAME DISTRONAME -CREATE_USER_USERNAME test1  -ADD_USER_TO_GROUP_NAME blabla
 .INPUTS
     Help needed here!
 .OUTPUTS
@@ -159,34 +159,32 @@ begin {
 process {
 
     if ($pscmdlet.ShouldProcess("Target", "Operation")) {
+        # pot. perform update to enable systmd support
         # wsl --update
+        
         # use wsl v2
         wsl --set-default-version 2
-
+        
         Write-Output "Importing distro $OUTPUT_DISTRONAME using $INPUT_FILENAME to $OUTPUT_DIRNAME"
         wsl --import $OUTPUT_DISTRONAME $OUTPUT_DIRNAME $INPUT_FILENAME
 
-        if ($CREATE_USER) {
-            Write-Output "Creating user $CREATE_USER_USERNAME"
-            wsl -d $OUTPUT_DISTRONAME /usr/sbin/useradd -m $CREATE_USER_USERNAME
-            Write-Output "Setting password for user $CREATE_USER_USERNAME to $CREATE_USER_PASSWORD"
-            # Setting password to user
-            wsl -d $OUTPUT_DISTRONAME /bin/bash -c "echo -e '$CREATE_USER_PASSWORD\n$CREATE_USER_PASSWORD' | /usr/bin/passwd $CREATE_USER_USERNAME"
-            Write-Output "Setting shell for user $CREATE_USER_USERNAME to $DEFAULT_SHELL"
-            # Setting default shell for user as bash
-            wsl -d $OUTPUT_DISTRONAME /usr/sbin/usermod --shell $DEFAULT_SHELL $CREATE_USER_USERNAME
+        Write-Output "Creating user $CREATE_USER_USERNAME"
+        wsl -d $OUTPUT_DISTRONAME /usr/sbin/useradd -m $CREATE_USER_USERNAME
 
-           if ($ADD_USER_TO_GROUP) {
-               foreach ($group in $ADD_USER_TO_GROUP_NAME) {
-                   Write-Output "Creating group $group"
-                   wsl -d $OUTPUT_DISTRONAME /usr/sbin/groupadd -f $group
-                   Write-Output "Adding user $CREATE_USER_USERNAME to group $group"
-                   wsl -d $OUTPUT_DISTRONAME /usr/sbin/adduser $CREATE_USER_USERNAME $group
-               }
-           }
+        Write-Output "Setting password for user $CREATE_USER_USERNAME to $CREATE_USER_PASSWORD"
+        wsl -d $OUTPUT_DISTRONAME /bin/bash -c "echo -e '$CREATE_USER_PASSWORD\n$CREATE_USER_PASSWORD' | /usr/bin/passwd $CREATE_USER_USERNAME"
+
+        Write-Output "Setting shell for user $CREATE_USER_USERNAME to $DEFAULT_SHELL"
+        wsl -d $OUTPUT_DISTRONAME /usr/sbin/usermod --shell $DEFAULT_SHELL $CREATE_USER_USERNAME
+
+        foreach ($group in $ADD_USER_TO_GROUP_NAME) {
+            Write-Output "Creating group $group"
+            wsl -d $OUTPUT_DISTRONAME /usr/sbin/groupadd -f $group
+
+            Write-Output "Adding user $CREATE_USER_USERNAME to group $group"
+            wsl -d $OUTPUT_DISTRONAME /usr/sbin/adduser $CREATE_USER_USERNAME $group
         }
 
-        # Setting password to user
         # NOTE: we have to set it BEFORE setting the default user, otherwise it will be
         # launched with the user shell, and it will ask us for the password.
         Write-Output "Setting default root password to the selected one"

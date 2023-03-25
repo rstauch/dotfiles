@@ -20,7 +20,6 @@ in {
         kamadorueda.alejandra
         timonwong.shellcheck
         mhutchie.git-graph
-        ms-vscode.PowerShell
         # disabled extensions have to be removed from vscode by hand ?
         #TODO: enable this:
         #github.copilot
