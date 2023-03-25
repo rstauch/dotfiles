@@ -18,8 +18,8 @@ in {
   t = "${pkgs.lib.getExe pkgs.tmux} attach";
 
   # start x11 apps in background
+  firefox = "sh $HOME/bg.sh '${pkgs.lib.getExe pkgs.firefox}'";
   # check in script ob keepass läuft, falls nicht keepass starten (wg. integration mit browser)
-  firefox = "sh $HOME/mul.sh ${pkgs.lib.getExe pkgs.firefox} ${pkgs.lib.getExe pkgs.keepassxc}";
   ff = "sh $HOME/mul.sh ${pkgs.lib.getExe pkgs.firefox} ${pkgs.lib.getExe pkgs.keepassxc}";
 
   chrome = "sh $HOME/bg.sh '${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check'";
