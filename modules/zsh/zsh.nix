@@ -61,6 +61,8 @@ in {
 
       unsetopt notify # Don't print status of background jobs until a prompt is about to be printed
 
+      setopt INC_APPEND_HISTORY
+
       # https://github.com/Freed-Wu/fzf-tab-source
       zstyle ':fzf-tab:complete:*' fzf-min-height 1000
 
