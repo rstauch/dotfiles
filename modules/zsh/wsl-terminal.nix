@@ -1,14 +1,16 @@
-{...}: let
+{pkgs, ...}: let
   PROJECT_ROOT = builtins.toString ./../../.;
 in {
   l = "ls -lah --group-directories-first";
   cls = "clear";
 
-  hmu = "cd ${PROJECT_ROOT}/scripts && ./apply.sh && cd $OLDPWD";
+  hmu = "cd ${PROJECT_ROOT}/scripts && nix-channel --update && ./apply.sh && cd $OLDPWD";
   hme = "home-manager edit";
   # should be equivalent to hme
-  dot = "code ${PROJECT_ROOT}";
+  dot = "${pkgs.lib.getExe pkgs.vscode} ${PROJECT_ROOT}";
 
-  pbcopy = "xclip -selection clipboard";
-  pbpaste = "xclip -selection clipboard -o";
+  pbcopy = "${pkgs.lib.getExe pkgs.xclip} -selection clipboard";
+  pbpaste = "${pkgs.lib.getExe pkgs.xclip} -selection clipboard -o";
+
+  os = "${pkgs.lib.getExe pkgs.onedrive} --synchronize";
 }

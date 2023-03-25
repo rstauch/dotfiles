@@ -1,8 +1,8 @@
-# TODO: extensible machen, da vermutlich häufig benutzt !
 # SYSTEM="wsl-x11" home-manager switch --file ./home.nix --dry-run
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
   shared = import ./modules/shared/shared.nix {
@@ -12,24 +12,41 @@
   };
   sharedWsl = import ./modules/shared/shared-wsl.nix {
     inherit pkgs;
+    inherit lib;
     template = "wsl-x11";
 
-    config = {
-      username = "${shared.home.username}";
-    };
+    config = {username = "${shared.home.username}";};
   };
-  imports = [shared sharedWsl];
+  firefox = import ./modules/firefox.nix {
+    inherit pkgs;
+    inherit lib;
+    email = "project@fluxdev.de";
+  };
+
+  imports = [shared sharedWsl firefox];
 in {
   inherit imports;
 
+  home.activation = {
+    # setup keepass for browser
+    keepass_ini = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      # Modify Browser section
+      $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Browser AllowExpiredCredentials true
+
+      $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Browser CustomProxyLocation ""
+
+      $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Browser Enabled true
+
+      # Modify Security section
+      $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Security ClearClipboardTimeout 90
+
+      $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Security EnableCopyOnDoubleClick true
+    '';
+  };
+
   home.packages = with pkgs; [
-    # crashes, manual install see scripts/intellij.sh
+    # crashes, manual install works better, see scripts/post/intellij.sh
     # jetbrains.idea-ultimate
-
-    onedrive
-
-    # TODO: evtl. nicht via nix installieren ?
-    firefox
 
     keepassxc
     postman
@@ -40,13 +57,17 @@ in {
     hunspell
     hunspellDicts.de_DE
     hunspellDicts.en_US
+
+    # Visual diff and merge tool
+    meld
+
+    # manage ini files
+    crudini
   ];
 
   programs.google-chrome = {
     enable = true;
-    package = pkgs.google-chrome.override {
-      commandLineArgs = "--no-first-run --no-default-browser-check";
-    };
+    package = pkgs.google-chrome;
   };
 
   home.sessionVariables = {
@@ -57,22 +78,52 @@ in {
     XCURSOR_SIZE = 16;
     GDK_BACKEND = "x11";
     LIBGL_ALWAYS_INDIRECT = "1";
-
-    BROWSER = "firefox";
   };
 
-  # systemd.user.services.onedrive = {
-  #   Unit.Description = "Start onedrive sync";
-  #   Service.Type = "simple";
-  #   Service.ExecStart = "onedrive --monitor";
-  #   # Service.ExecStart = "${pkgs.onedrive} --monitor";
-  #   # Install.WantedBy = ["default.target"];
-  #   # Install.WantedBy = ["multi-user.target"];
-  #   Install.wantedBy = ["multi-user.target"];
-  #   Install.after = ["multi-user.target" "network-online.target"];
-  #   # Service.Restart = "on-failure";
-  #   # Service.RestartSec = 5;
-  # };
+  home.file = {
+    "bg.sh" = {
+      text = ''
+        #!/bin/bash
+
+        # check if parameter is passed
+        if [ -z "$1" ]; then
+          echo "Usage: $0 <command>"
+          exit 1
+        fi
+
+        # execute command with nohup in background
+        nohup "$1" > /dev/null 2>&1 &
+      '';
+      executable = true;
+    };
+
+    "mul.sh" = {
+      text = ''
+         #!/bin/bash
+
+        # Define input variables
+         APP1="$1"
+         APP2="$2"
+
+         # Check if APP2 is running
+         if ! pgrep -xf "$APP2" > /dev/null; then
+             # If APP2 is not running, start it
+             echo "$APP2 is not running. Starting it now..."
+             sh bg.sh "$APP2"
+         fi
+
+         # Wait for APP2 to start
+         while ! pgrep -xf "$APP2" > /dev/null; do
+             sleep 1
+         done
+
+         # Start APP1 after APP2 has started
+         echo "Starting $APP1 now..."
+         sh bg.sh "$APP1"
+      '';
+      executable = true;
+    };
+  };
 
   # set specific properties
   # programs.git = {

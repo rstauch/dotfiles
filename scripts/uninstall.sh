@@ -2,11 +2,11 @@
 
 /nix/nix-installer uninstall || true
 
-if grep -q ". \"$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh\"" ~/.profile; then
-  sed -i '/. "$HOME\/.nix-profile\/etc\/profile\.d\/hm-session-vars\.sh"/d' ~/.profile
-  echo 'The line was removed from ~/.profile'
+if grep -q ". \"$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh\"" $HOME/.profile; then
+  sed -i '/. "$HOME\/.nix-profile\/etc\/profile\.d\/hm-session-vars\.sh"/d' $HOME/.profile
+  echo 'The line was removed from $HOME/.profile'
 else
-  echo 'The line is not in ~/.profile'
+  echo 'The line is not in $HOME/.profile'
 fi
 
-# TODO: evtl. config dirs in ~/.config löschen ?
+# TODO: evtl. config dirs in $HOME/.config löschen ?

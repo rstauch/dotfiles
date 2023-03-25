@@ -26,7 +26,7 @@ Create shortcut: `"C:\Program Files\VcXsrv\xlaunch.exe" -run "C:\code\config.xla
 <XLaunch WindowMode="MultiWindow" ClientMode="NoClient" LocalClient="False" Display="-1" LocalProgram="xcalc" RemoteProgram="xterm" RemotePassword="" PrivateKey="" RemoteHost="" RemoteUser="" XDMCPHost="" XDMCPBroadcast="False" XDMCPIndirect="False" Clipboard="True" ClipboardPrimary="False" ExtraParams="" Wgl="False" DisableAC="True" XDMCPTerminate="False"/>
 ```
 **Note**: Ggf. Windows Firewall Freigaben (**Inbound Rules**) für *VcXsrv* anlegen.
-
+  
 
 ### Enable systemd (already done via WSL2-Create-Distro)
 - see https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/
@@ -47,32 +47,27 @@ systemctl list-unit-files --type=service
 
 ## Install nix home-manager
 ```shell
-mkdir -p ~/projects && cd ~/projects
+mkdir -p $HOME/projects && cd $HOME/projects
 git clone https://github.com/rstauch/dotfiles.git
 cd dotfiles/scripts
+
+# enter private key and template file name
 ./install.sh
 # open new shell to apply changes
-```
 
-## Apply home-manager configuration
-```shell
-cd ~/projects/dotfiles
-cd scripts
-
-# will run home-wsl-x11.nix
-./apply.sh
-
-# enter ssh private key from 1password and confirm with '#'
-
-# exit shell and open new shell from shortcut:
 # Windows shortcut: C:\Windows\System32\wsl.exe --distribution ${distribution_name} -u ${username} --cd "~" -e bash -lc zsh
 # ie: C:\Windows\System32\wsl.exe --distribution wsl-ubuntu-2004-test -u rstauch --cd "~" -e bash -lc zsh
+
+# if desired, enable tmux without using nix:
+# C:\Windows\System32\wsl.exe --distribution wsl-ubuntu-2004-test -u rstauch --cd "~"-e bash -lc "zsh -c 'export ZSH_TMUX_AUTOSTART=true && exec zsh'"
 ```
 
-## Install IntelliJ (ultimate) manually
+## Post-Install Steps
+
+### Install IntelliJ (ultimate) manually
 ```shell
-cd ~/projects/dotfiles
-cd scripts
+cd $HOME/projects/dotfiles
+cd scripts/post
 # update intellij.sh with latest version if available
 ./intellij.sh
 
@@ -87,54 +82,48 @@ cd scripts
 # start IntelliJ from anywhere with command: idea (zsh alias)
 ```
 
-## Post-Install Steps
-offene Punkte: OneDrive?<->Keepass?, ?Firefox?<->Keepass; vereinheitlichung WSL Script + nix; Darwin; Cheatsheet
-
+### Docker
 - enable Docker Integration and verify with `docker ps -a` and `docker run hello-world`
   - ggf. einfach Docker Setting togglen und un-togglen, danach Shell neu starten
-- create keepass vault in onedrive default dir (~/OneDrive) (**möglicherweise automatisierbar**)
 
-=> **? Problem ?** falls auf mehreren Rechner der selbe WSL Name verwendet wird, wird dann onedrive content überschrieben ?
-  => erst onedrive download, dann ggf. neue Einträge anlegen
-
-```shell
-# create keepass vault
-printf "DB_PWD\nDB_PWD" | keepassxc-cli db-create -p ~/OneDrive/wsl-ubuntu-2004-test/database.kdbx
-
-# add keepass entry
-printf "DB_PWD\nENTRY_PWD" | keepassxc-cli add ~/OneDrive/wsl-ubuntu-2004-test/database.kdbx --username "user_name" -p "entry_name"
-```
-
-- configure keepass to work with firefox (**möglicherweise automatisierbar**)
-- manage firefox 
-  - create firefox account and store credentials in keepass 
-  - install plugins (**möglicherweise automatisierbar**)
-  - connect keepass and disable firefox password manager (**möglicherweise automatisierbar**)
-  - make default browser (**möglicherweise automatisierbar**)
+### OneDrive
 - login to onedrive
 ```shell
-# run commandd
 onedrive 
+
 # URL im Browser aufrufen
 # Code aus URL kopieren
-
-# perform single-directory sync: 
-onedrive --synchronize --single-directory 'wsl-ubuntu-2004-test' # --dry-run
 ```
+- sync onedrive with command: `os`
+- create project dir in home directory to be synced, i.e: `mkdir -p $HOME/OneDrive/TestProject`
+- create keepass vault in project dir if not already downloaded from sync
+  - store vault password in (host) *1Password*
+  - store username credentials in Keepass vault
+  - store root credentials in Keepass vault
+- sync onedrive with command: `os`
+- load monitor service: `systemctl --user restart onedrive.service`
 
-- create project specific https://notion.so account ($project@fluxdev.de) and add credentials to keepass
 
+### Firefox
+- log into Firefox and enable settings sync
+  - save Firefox credentials to Keepass vault
+- enable alle extensions in **Private Windows** if required
+- connect Keepass Browser Plugin to KeepassXC  
+
+### Other
+- create project specific https://notion.so account (use project email address) and add credentials to keepass vault
 
 ### Transform https dotfiles repo to ssh
+- required as no ssh key is setup at time of initial cloning
 ```shell
-# verify ~/.ssh/id_rsa is set up
+# verify $HOME/.ssh/id_rsa is set up
 git remote remove origin
 git remote add origin git@github.com:rstauch/dotfiles.git
 git fetch
 git branch --set-upstream-to=origin/master master
 ```
 
-### Install Updates
+### Install System Updates
 ```shell
 sudo apt-get update
 sudo apt-get upgrade
@@ -152,4 +141,34 @@ wsl.exe gzip -9 wsl-ubuntu-2004-test_backup.tar
 # Restore
 # wsl --import DISTRO-NAME INSTALL-LOCATION PATH\FILE-NAME.tar
 wsl --import wsl-ubuntu-2004-test D:\code\wsl\wsl-ubuntu-2004-test F:\backup\wsl-ubuntu-2004-test_backup.tar
+```
+
+### Apply Home-Manager Updates
+- edit configuration: `dot` or `hme`
+- run `hmu` oder `home-manager switch`
+
+### Switch home-profile
+```shell
+# ggf. scripts/uninstall.sh ausführen
+# ggf. daten in $HOME/.config etc. löschen
+sh scripts/install.sh
+# enter different template name than before and open a new shell after successful installation
+```
+
+---
+
+TODO: offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet, Readme,  wsl script muss keepass ja nicht nach onedrive packen
+? vscode plugin scratchpad
+? vscode keybindings wie intellij
+? direnv
+? python
+? evtl chrome/firefox ui rot um nsfw zu verdeutlichen
+? todos
+
+```shell
+# create keepass vault
+printf "DB_PWD\nDB_PWD" | keepassxc-cli db-create -p $HOME/OneDrive/wsl-ubuntu-2004-test/database.kdbx
+
+# add keepass entry
+printf "DB_PWD\nENTRY_PWD" | keepassxc-cli add $HOME/OneDrive/wsl-ubuntu-2004-test/database.kdbx --username "user_name" -p "entry_name"
 ```

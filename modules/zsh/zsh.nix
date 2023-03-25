@@ -24,7 +24,7 @@ in {
   # history = CTRL + R
   # filesearch = CTRL + T <- beißt sich mit TMUX CTR+T = new Tab
   # alternativ: cd ** + TAB bzw cat ** + TAB um fuzzy search zu öffnen
-  # subdir search = AL T +C
+  # enter subdir = AL T +C
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
@@ -60,6 +60,9 @@ in {
       unsetopt HIST_BEEP
 
       unsetopt notify # Don't print status of background jobs until a prompt is about to be printed
+
+      setopt INC_APPEND_HISTORY
+      setopt globdots
 
       # https://github.com/Freed-Wu/fzf-tab-source
       zstyle ':fzf-tab:complete:*' fzf-min-height 1000
