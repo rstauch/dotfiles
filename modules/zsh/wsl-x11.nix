@@ -35,5 +35,4 @@ in {
   idea = "nohup $HOME/Downloads/intellij/idea-IU-223.8836.41/bin/idea.sh &";
 
   os = "${pkgs.lib.getExe pkgs.onedrive} --synchronize";
-  osm = "nohup ${pkgs.lib.getExe pkgs.onedrive} --monitor > /dev/null 2>&1&";
 }

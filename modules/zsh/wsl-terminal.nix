@@ -13,5 +13,4 @@ in {
   pbpaste = "${pkgs.lib.getExe pkgs.xclip} -selection clipboard -o";
 
   os = "${pkgs.lib.getExe pkgs.onedrive} --synchronize";
-  osm = "nohup ${pkgs.lib.getExe pkgs.onedrive} --monitor > /dev/null 2>&1&";
 }

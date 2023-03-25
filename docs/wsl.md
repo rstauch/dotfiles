@@ -57,6 +57,9 @@ cd dotfiles/scripts
 
 # Windows shortcut: C:\Windows\System32\wsl.exe --distribution ${distribution_name} -u ${username} --cd "~" -e bash -lc zsh
 # ie: C:\Windows\System32\wsl.exe --distribution wsl-ubuntu-2004-test -u rstauch --cd "~" -e bash -lc zsh
+
+# if desired, enable tmux without using nix:
+# C:\Windows\System32\wsl.exe --distribution wsl-ubuntu-2004-test -u rstauch --cd "~"-e bash -lc "zsh -c 'export ZSH_TMUX_AUTOSTART=true && exec zsh'"
 ```
 
 ## Post-Install Steps
@@ -97,7 +100,7 @@ onedrive
   - store vault password in (host) *1Password*
   - store username credentials in Keepass vault
   - store root credentials in Keepass vault
-- sync onedrive with command: `os` or start monitoring with `osm`
+- sync onedrive with command: `os`
 - load monitor service: `systemctl --user restart onedrive.service`
 
 
