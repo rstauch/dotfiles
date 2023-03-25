@@ -80,6 +80,24 @@ in {
     LIBGL_ALWAYS_INDIRECT = "1";
   };
 
+  home.file = {
+    "bg.sh" = {
+      text = ''
+        #!/bin/bash
+
+        # check if parameter is passed
+        if [ -z "$1" ]; then
+          echo "Usage: $0 <command>"
+          exit 1
+        fi
+
+        # execute command with nohup in background
+        nohup "$1" > /dev/null 2>&1 &
+      '';
+      executable = true;
+    };
+  };
+
   # set specific properties
   # programs.git = {
   #   userName = pkgs.lib.mkForce "WSL_X11_Robert Stauch";

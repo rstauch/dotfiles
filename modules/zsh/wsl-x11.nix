@@ -19,20 +19,20 @@ in {
 
   # TODO: check in script ob keepass läuft, falls nicht keepass starten (wg. integration mit browser)
   # start x11 apps in background
-  firefox = "nohup ${pkgs.lib.getExe pkgs.firefox} > /dev/null 2>&1&";
-  ff = "nohup ${pkgs.lib.getExe pkgs.firefox} > /dev/null 2>&1&";
+  firefox = "sh $HOME/bg.sh ${pkgs.lib.getExe pkgs.firefox}";
+  ff = "sh $HOME/bg.sh ${pkgs.lib.getExe pkgs.firefox}";
 
-  chrome = "nohup ${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check > /dev/null 2>&1&";
-  google-chrome = "nohup ${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check > /dev/null 2>&1&";
-  google-chrome-stable = "nohup ${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check > /dev/null 2>&1&";
+  chrome = "sh $HOME/bg.sh '${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check'";
+  google-chrome = "sh $HOME/bg.sh '${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check'";
+  google-chrome-stable = "sh $HOME/bg.sh '${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check'";
 
-  postman = "nohup ${pkgs.lib.getExe pkgs.postman} > /dev/null 2>&1&";
-  keepassxc = "nohup ${pkgs.lib.getExe pkgs.keepassxc} > /dev/null 2>&1&";
+  postman = "sh $HOME/bg.sh ${pkgs.lib.getExe pkgs.postman}";
+  keepassxc = "sh $HOME/bg.sh ${pkgs.lib.getExe pkgs.keepassxc}";
 
-  libreoffice = "nohup '${pkgs.libreoffice}/bin/soffice' > /dev/null 2>&1&";
-  lo = "nohup '${pkgs.libreoffice}/bin/soffice' > /dev/null 2>&1&";
+  libreoffice = "sh $HOME/bg.sh '${pkgs.libreoffice}/bin/soffice'";
+  lo = "sh $HOME/bg.sh '${pkgs.libreoffice}/bin/soffice'";
 
-  idea = "nohup $HOME/Downloads/intellij/idea-IU-223.8836.41/bin/idea.sh &";
+  idea = "sh $HOME/bg.sh $HOME/Downloads/intellij/idea-IU-223.8836.41/bin/idea.sh";
 
   os = "${pkgs.lib.getExe pkgs.onedrive} --synchronize";
 }
