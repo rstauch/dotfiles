@@ -158,9 +158,13 @@ sh scripts/install.sh
 
 ---
 
-TODO: offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet, Readme,  wsl script muss keepass ja nicht nach onedrive packen
+TODO: offene Punkte: vereinheitlichung WSL Script + nix;  
+Darwin; Cheatsheet,  wsl script muss keepass ja nicht nach onedrive packen
 ? vscode plugin scratchpad
-? vscode keybindings wie intellij
+? vscode keybindings wie intellij  
+readme inkl. shortcuts  
+wsl unified script + keepass_wsl anlegen in ~  
+ff sync profil evtl. über env steuern (aus wsl script
 
 ```shell
 # create keepass vault
@@ -168,4 +172,30 @@ printf "DB_PWD\nDB_PWD" | keepassxc-cli db-create -p $HOME/OneDrive/wsl-ubuntu-2
 
 # add keepass entry
 printf "DB_PWD\nENTRY_PWD" | keepassxc-cli add $HOME/OneDrive/wsl-ubuntu-2004-test/database.kdbx --username "user_name" -p "entry_name"
+```
+
+
+---
+# TODO: Integration WSL2 Script
+
+```shell
+create wsl
+	parameter distro location tar.gz
+	parameter distroname
+	paramter outputdir location
+	parameter username <- in nix aus env holen
+	input pwd root
+	input pwd user
+	todo: input project name
+	# parameter update distro
+	todo: parameter setup nix
+		# input profile (wsl-x11)
+		-git clone
+		-install.sh
+		# parameter run postscripts? [intellij]
+		# parameter setup onedrive (login)
+		-transform dotfiles repo to ssh
+		# use projectname for fierfox sync
+	todo: paramter create shortcut (zsh, tmux?)
+	todo: parameter setup VcXsrv on Host
 ```
