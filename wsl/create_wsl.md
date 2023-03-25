@@ -22,7 +22,7 @@ Clone the repository locally:
 # disable execution policy temporarily
 PowerShell -ExecutionPolicy Bypass
 
-.\CreateLinuxDistro.ps1 -INPUT_FILENAME F:\downloads\ubuntu-20.04-wsl-rootfs-tar.gz -OUTPUT_DIRNAME "D:\code\wsl\wsl-ubuntu-2004-test" -OUTPUT_DISTRONAME wsl-ubuntu-2004-test -CREATE_USER_USERNAME rstauch -SET_USER_AS_DEFAULT rstauch
+.\CreateLinuxDistro.ps1 -INPUT_FILENAME F:\downloads\ubuntu-20.04-wsl-rootfs-tar.gz -OUTPUT_DIRNAME "D:\code\wsl" -OUTPUT_DISTRONAME wsl-ubuntu-2004-test-1 -CREATE_USER_USERNAME rstauch
 
 ```
 ## Next steps

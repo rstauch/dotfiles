@@ -8,21 +8,7 @@
     This script will do just that. It creates a WSL distribution from a tarball file,
     and optionally creates a user and adds it to a group (sudo by default).
 .EXAMPLE
-    Create-Linux-Distro.ps1 -INPUT_FILENAME focal-server-cloudimg-amd64-wsl.rootfs.tar.gz -OUTPUT_DIRNAME "%LOCALAPPDATA%/ubuntu2004-1" -OUTPUT_DISTRONAME ubuntu2004-1 -CREATE_USER_USERNAME test1 -ADD_USER_TO_GROUP_NAME sudo
-.EXAMPLE
-    Create-Linux-Distro.ps1 -INPUT_FILENAME focal-server-cloudimg-amd64-wsl.rootfs.tar.gz -OUTPUT_DIRNAME "" -OUTPUT_DISTRONAME DISTRONAME -CREATE_USER_USERNAME test1  -ADD_USER_TO_GROUP_NAME blabla
-.INPUTS
-    Help needed here!
-.OUTPUTS
-    Help needed here!
-.NOTES
-    Help needed here!
-.COMPONENT
-    Help needed here!
-.ROLE
-    Help needed here!
-.FUNCTIONALITY
-    Help needed here!
+    Create-Linux-Distro.ps1 -INPUT_FILENAME F:\downloads\ubuntu-20.04-wsl-rootfs-tar.gz -OUTPUT_DIRNAME "D:\code\wsl" -OUTPUT_DISTRONAME ubuntu2004-test-1 -CREATE_USER_USERNAME rstauch -ADD_USER_TO_GROUP_NAME sudo
 #>
 
 [CmdletBinding(DefaultParameterSetName = 'Parameter Set 1',
@@ -69,26 +55,9 @@ Param (
         ValueFromRemainingArguments = $false)]
     [ValidateNotNull()]
     [ValidateNotNullOrEmpty()]
+    [ValidatePattern("^[^<>:""/\\|?*]+$")]
+    [string]
     $OUTPUT_DISTRONAME,
-
-    # The default shell
-    [Parameter(
-        Mandatory = $false,
-        ValueFromPipeline = $false,
-        ValueFromRemainingArguments = $false)]
-    [ValidateNotNull()]
-    [ValidateNotNullOrEmpty()]
-    $DEFAULT_SHELL = "/bin/bash",
-
-    # Whether or not to create a user along with the distribution
-    [Parameter(
-        Mandatory = $false,
-        ValueFromPipeline = $false,
-        ValueFromRemainingArguments = $false,
-        ParameterSetName='USER'
-    )]
-    [bool]
-    $CREATE_USER = $true,
 
     # Username of the user to create
     [Parameter(
@@ -113,16 +82,6 @@ Param (
     [ValidateNotNullOrEmpty()]
     $CREATE_USER_PASSWORD,
 
-    # Whether or not to automatically add the user to a group
-    [Parameter(
-        Mandatory = $false,
-        ValueFromPipeline = $false,
-        ValueFromRemainingArguments = $false,
-        ParameterSetName='USER'
-    )]
-    [bool]
-    $ADD_USER_TO_GROUP = $true,
-
     # Which group should the user be added to (default=sudo)
     [Parameter(
         Mandatory = $false,
@@ -132,17 +91,8 @@ Param (
     )]
     [ValidateNotNull()]
     [ValidateNotNullOrEmpty()]
-     # specify the parameter as an array of strings
-    [string[]]$ADD_USER_TO_GROUP_NAME = @("sudo", "docker"),
-
-    # Which user should be set as the default
-    [Parameter(
-        Mandatory = $false,
-        ValueFromPipeline = $false,
-        ValueFromRemainingArguments = $false
-    )]
-    [ValidateNotNull()]
-    $SET_USER_AS_DEFAULT = "root",
+    # [string[]]$ADD_USER_TO_GROUP_NAME = @("sudo", "docker"),
+    [string[]]$ADD_USER_TO_GROUP_NAME = @("sudo"),
 
     # The default password for the root user
     [Parameter(
@@ -150,7 +100,9 @@ Param (
         ValueFromPipeline = $true,
         ValueFromRemainingArguments = $false
     )]
-    $ROOT_PASSWORD = "changeme"
+    [ValidateNotNull()]
+    [ValidateNotNullOrEmpty()]
+    $ROOT_PASSWORD
 )
 
 begin {
@@ -165,8 +117,9 @@ process {
         # use wsl v2
         wsl --set-default-version 2
         
-        Write-Output "Importing distro $OUTPUT_DISTRONAME using $INPUT_FILENAME to $OUTPUT_DIRNAME"
-        wsl --import $OUTPUT_DISTRONAME $OUTPUT_DIRNAME $INPUT_FILENAME
+        $output_path = Join-Path $OUTPUT_DIRNAME $OUTPUT_DISTRONAME
+        Write-Output "Importing distro $OUTPUT_DISTRONAME using $INPUT_FILENAME to $output_path"
+        wsl --import $OUTPUT_DISTRONAME $output_path $INPUT_FILENAME
 
         Write-Output "Creating user $CREATE_USER_USERNAME"
         wsl -d $OUTPUT_DISTRONAME /usr/sbin/useradd -m $CREATE_USER_USERNAME
@@ -174,8 +127,8 @@ process {
         Write-Output "Setting password for user $CREATE_USER_USERNAME to $CREATE_USER_PASSWORD"
         wsl -d $OUTPUT_DISTRONAME /bin/bash -c "echo -e '$CREATE_USER_PASSWORD\n$CREATE_USER_PASSWORD' | /usr/bin/passwd $CREATE_USER_USERNAME"
 
-        Write-Output "Setting shell for user $CREATE_USER_USERNAME to $DEFAULT_SHELL"
-        wsl -d $OUTPUT_DISTRONAME /usr/sbin/usermod --shell $DEFAULT_SHELL $CREATE_USER_USERNAME
+        Write-Output "Setting shell for user $CREATE_USER_USERNAME"
+        wsl -d $OUTPUT_DISTRONAME /usr/sbin/usermod --shell "/bin/bash" $CREATE_USER_USERNAME
 
         foreach ($group in $ADD_USER_TO_GROUP_NAME) {
             Write-Output "Creating group $group"
@@ -190,13 +143,13 @@ process {
         Write-Output "Setting default root password to the selected one"
         wsl -d $OUTPUT_DISTRONAME /bin/bash -c "echo -e '$ROOT_PASSWORD\n$ROOT_PASSWORD' | /usr/bin/passwd"
 
-        Write-Output "Setting default user as $SET_USER_AS_DEFAULT"
-        wsl -d $OUTPUT_DISTRONAME /bin/bash -c "echo -e '[user]\ndefault=$SET_USER_AS_DEFAULT' > /etc/wsl.conf"
+        Write-Output "Setting default user as $CREATE_USER_USERNAME"
+        wsl -d $OUTPUT_DISTRONAME /bin/bash -c "echo -e '[user]\ndefault=$CREATE_USER_USERNAME' > /etc/wsl.conf"
 
         # enable systemd
         wsl -d $OUTPUT_DISTRONAME /bin/bash -c "echo -e '[boot]\nsystemd=true' > /etc/wsl.conf"
 
-        # restart distro to enable systemd
+        # restart distro to actually enable systemd
         wsl --terminate $OUTPUT_DISTRONAME
         wsl -d $OUTPUT_DISTRONAME /bin/bash -c "exit"
 
