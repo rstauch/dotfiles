@@ -22,9 +22,9 @@ in {
   # check in script ob keepass läuft, falls nicht keepass starten (wg. integration mit browser)
   ff = "sh $HOME/mul.sh ${pkgs.lib.getExe pkgs.firefox} ${pkgs.lib.getExe pkgs.keepassxc}";
 
-  chrome = "sh $HOME/bg.sh '${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check'";
-  google-chrome = "sh $HOME/bg.sh '${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check'";
-  google-chrome-stable = "sh $HOME/bg.sh '${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check'";
+  chrome = "nohup ${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check > /dev/null 2>&1&";
+  google-chrome = "nohup ${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check > /dev/null 2>&1&";
+  google-chrome-stable = "nohup ${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check > /dev/null 2>&1&";
 
   postman = "sh $HOME/bg.sh ${pkgs.lib.getExe pkgs.postman}";
   keepassxc = "sh $HOME/bg.sh ${pkgs.lib.getExe pkgs.keepassxc}";
@@ -35,4 +35,6 @@ in {
   idea = "sh $HOME/bg.sh $HOME/Downloads/intellij/idea-IU-223.8836.41/bin/idea.sh";
 
   os = "${pkgs.lib.getExe pkgs.onedrive} --synchronize";
+
+  meld = "sh $HOME/bg.sh ${pkgs.lib.getExe pkgs.meld}";
 }
