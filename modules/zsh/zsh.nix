@@ -22,7 +22,7 @@ in {
   ];
 
   # history = CTRL + R
-  # filesearch = CTRL + T <- beißt sich mit TMUX CTR+T = new Tab
+  # subdirs filesearch = CTRL + T
   # alternativ: cd ** + TAB bzw cat ** + TAB um fuzzy search zu öffnen
   # enter subdir = AL T +C
   programs.fzf = {

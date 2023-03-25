@@ -3,6 +3,7 @@
 in {
   l = "ls -lah --group-directories-first";
   cls = "clear";
+  c = "clear";
 
   hmu = "cd ${PROJECT_ROOT}/scripts && nix-channel --update && ./apply.sh && cd $OLDPWD";
   hme = "home-manager edit";

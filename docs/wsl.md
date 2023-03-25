@@ -146,6 +146,7 @@ wsl --import wsl-ubuntu-2004-test D:\code\wsl\wsl-ubuntu-2004-test F:\backup\wsl
 ### Apply Home-Manager Updates
 - edit configuration: `dot` or `hme`
 - run `hmu` oder `home-manager switch`
+- apply with restart of shell, in case of *tmux*: `CTRL+D` bzw. `tkill`
 
 ### Switch home-profile
 ```shell
