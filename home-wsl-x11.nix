@@ -96,6 +96,33 @@ in {
       '';
       executable = true;
     };
+
+    "mul.sh" = {
+      text = ''
+         #!/bin/bash
+
+        # Define input variables
+         APP1="$1"
+         APP2="$2"
+
+         # Check if APP2 is running
+         if ! pgrep -xf "$APP2" > /dev/null; then
+             # If APP2 is not running, start it
+             echo "$APP2 is not running. Starting it now..."
+             sh bg.sh "$APP2"
+         fi
+
+         # Wait for APP2 to start
+         while ! pgrep -xf "$APP2" > /dev/null; do
+             sleep 1
+         done
+
+         # Start APP1 after APP2 has started
+         echo "Starting $APP1 now..."
+         sh bg.sh "$APP1"
+      '';
+      executable = true;
+    };
   };
 
   # set specific properties
