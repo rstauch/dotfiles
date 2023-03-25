@@ -11,7 +11,7 @@ git clone git@github.com:rstauch/WSL2-Create-Distro.git
 # execute steps, see: https://github.com/rstauch/WSL2-Create-Distro
 ```
 
-- Initial Windows shortcut: `C:\Windows\System32\wsl.exe --distribution ${distribution_name} -u ${username} --cd "~"`, ie: `C:\Windows\System32\wsl.exe --distribution Ubuntu-20.04 -u rstauch --cd "~"`
+- create initial Windows shortcut: `C:\Windows\System32\wsl.exe --distribution ${distribution_name} -u ${username} --cd "~"`, ie: `C:\Windows\System32\wsl.exe --distribution Ubuntu-20.04 -u rstauch --cd "~"`
 
 ### Setup VcXsrv on Windows Host
 - Note: evtl. https://community.chocolatey.org/packages/vcxsrv#files nutzen (inkl. Firewall Rules) 
@@ -105,9 +105,9 @@ onedrive
 
 
 ### Firefox
+- start with `ff`
 - log into Firefox and enable settings sync
   - save Firefox credentials to Keepass vault
-- enable alle extensions in **Private Windows** if required
 - connect Keepass Browser Plugin to KeepassXC  
 
 ### Other
@@ -126,7 +126,7 @@ git branch --set-upstream-to=origin/master master
 ### Install System Updates
 ```shell
 sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get -y upgrade
 ```
 
 ### Backup & restore WSL2
@@ -161,7 +161,6 @@ sh scripts/install.sh
 TODO: offene Punkte: vereinheitlichung WSL Script + nix; Darwin; Cheatsheet, Readme,  wsl script muss keepass ja nicht nach onedrive packen
 ? vscode plugin scratchpad
 ? vscode keybindings wie intellij
-? direnv
 
 ```shell
 # create keepass vault

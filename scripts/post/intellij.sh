@@ -15,6 +15,7 @@ mkdir -p $HOME/Downloads/intellij
 cd $HOME/Downloads
 wget https://download-cdn.jetbrains.com/idea/ideaIU-${INTELLIJ_VERSION}.tar.gz
 xvf ideaIU-${INTELLIJ_VERSION}.tar.gz -C intellij
+rm *.tar.gz
 
 sh $HOME/Downloads/intellij/idea-IU-${INTELLIJ_INTERNAL_VERSION}/bin/idea.sh
 
