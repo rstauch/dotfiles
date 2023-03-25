@@ -106,14 +106,16 @@ in {
     # A utility that combines the usability of The Silver Searcher with the raw speed of grep
     # https://github.com/BurntSushi/ripgrep
     ripgrep
-
-    # idea-ultimate
   ];
 
   home.username = "rstauch";
   home.language = {
     base = "de_DE.utf8";
     messages = "en_US.utf8";
+  };
+
+  home.sessionVariables = {
+    TZ = "Europe/Berlin";
   };
 
   programs.git = {
