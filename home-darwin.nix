@@ -15,5 +15,5 @@ in {
   # TODO: change this
   home.homeDirectory = "/home/${shared.home.username}";
 
-  home.packages = [];
+  home.packages = with pkgs; [];
 }

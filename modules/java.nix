@@ -11,7 +11,7 @@ in {
 
     # required for intellij to work
     # ggf. VcXsrv neustarten wenn artifakte auftrreten
-    # funktioniert aktuell am besten mit via toolbox installiertem intellij
+    # funktioniert aktuell am besten mit via manuell installierten intellij
     _JAVA_OPTIONS = "-Xmx10000M -Dremote.x11.workaround=false -Dsun.java2d.metal=false";
   };
 

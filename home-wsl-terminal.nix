@@ -22,5 +22,5 @@
 in {
   inherit imports;
 
-  home.packages = [];
+  home.packages = with pkgs; [];
 }

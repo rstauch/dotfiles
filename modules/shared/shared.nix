@@ -46,11 +46,46 @@ in {
     unzip
     xz
 
+    # Make JSON greppable, https://github.com/tomnomnom/gron
+    gron
+
+    # Terminal JSON viewer, https://github.com/antonmedv/fx
+    fx
+
+    # Run SQL directly on CSV or TSV files, https://github.com/harelba/q
+    q-text-as-data
+
+    # A simple, fast and user-friendly alternative to find, https://github.com/sharkdp/fd
+    fd
+
+    # Render markdown on the CLI, https://github.com/charmbracelet/glow
+    glow
+
+    # A generic non-JVM producer and consumer for Apache Kafka, https://github.com/edenhill/kcat
+    # kcat
+
+    # A syntax-aware diff, https://github.com/Wilfred/difftastic
+    # difftastic
+
+    # CLI program that accepts piped input and presents files for selection, https://facebook.github.io/PathPicker/
+    # fpp
+
+    # A syntax-highlighting pager for git, https://github.com/dandavison/delta
+    # delta
+
+    # Side-by-side highlighted command line diffs, https://github.com/jeffkaufman/icdiff
+    icdiff
+
+    # Simplified and community-driven man pages, https://github.com/tldr-pages/tldr
+    tldr
+
+    # A utility that combines the usability of The Silver Searcher with the raw speed of grep, https://github.com/BurntSushi/ripgrep
+    ripgrep
+
     # kubectl
     # kubernetes-helm
 
-    # https://github.com/ahmetb/kubectx
-    # kubectx
+    # kubectx, https://github.com/ahmetb/kubectx
 
     # k9s
     # terraform
@@ -58,54 +93,6 @@ in {
 
     # newman
     # lazydocker
-
-    # Make JSON greppable!
-    # https://github.com/tomnomnom/gron
-    gron
-
-    # Terminal JSON viewer
-    # https://github.com/antonmedv/fx
-    fx
-
-    # Run SQL directly on CSV or TSV files
-    # https://github.com/harelba/q
-    q-text-as-data
-
-    # A simple, fast and user-friendly alternative to find
-    # https://github.com/sharkdp/fd
-    fd
-
-    # Render markdown on the CLI
-    # https://github.com/charmbracelet/glow
-    glow
-
-    # A generic non-JVM producer and consumer for Apache Kafka
-    # https://github.com/edenhill/kcat
-    # kcat
-
-    # A syntax-aware diff
-    # https://github.com/Wilfred/difftastic
-    # difftastic
-
-    # CLI program that accepts piped input and presents files for selection
-    # https://facebook.github.io/PathPicker/
-    # fpp
-
-    # A syntax-highlighting pager for git
-    # https://github.com/dandavison/delta
-    # delta
-
-    # Side-by-side highlighted command line diffs
-    # https://github.com/jeffkaufman/icdiff
-    # icdiff
-
-    # Simplified and community-driven man pages
-    # https://github.com/tldr-pages/tldr
-    # tldr
-
-    # A utility that combines the usability of The Silver Searcher with the raw speed of grep
-    # https://github.com/BurntSushi/ripgrep
-    ripgrep
   ];
 
   home.username = "rstauch";

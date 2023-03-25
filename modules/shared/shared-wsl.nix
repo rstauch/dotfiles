@@ -72,9 +72,6 @@ in {
     };
   };
 
-  home.sessionVariables = {
-  };
-
   home.homeDirectory = "/home/${config.username}";
 
   # install dependencies shared between all wsl instances
@@ -84,7 +81,6 @@ in {
   ];
 
   home.activation = {
-    # add known hosts
     known_hosts = lib.hm.dag.entryAfter ["writeBoundary"] ''
        hosts=(
           "github.com"
@@ -109,7 +105,7 @@ in {
     '';
   };
 
-  # führt ggf. zu problemen, evtl mit bash verknüpfung starten
+  # führt ggf. zu problemen, evtl mit bash verknüpfung starten und wieder entfernen
   # systemctl --user restart onedrive.service
   systemd.user.services.onedrive = {
     Unit.Description = "Start onedrive";
