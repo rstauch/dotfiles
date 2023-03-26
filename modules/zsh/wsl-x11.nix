@@ -33,9 +33,9 @@ in {
   libreoffice = "sh $HOME/bg.sh '${pkgs.libreoffice}/bin/soffice'";
   lo = "sh $HOME/bg.sh '${pkgs.libreoffice}/bin/soffice'";
 
-  idea = "sh $HOME/bg.sh $HOME/Downloads/intellij/idea-IU-223.8836.41/bin/idea.sh";
+  idea = "sh $HOME/bg.sh $HOME/idea.sh";
 
-  os = "${pkgs.lib.getExe pkgs.onedrive} --synchronize";
+  os = "${pkgs.lib.getExe pkgs.onedrive} --synchronize --single-directory projects --verbose";
 
   meld = "sh $HOME/bg.sh ${pkgs.lib.getExe pkgs.meld}";
 }

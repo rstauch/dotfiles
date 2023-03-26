@@ -30,6 +30,9 @@ in {
   home.activation = {
     # setup keepass for browser
     keepass_ini = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      $DRY_RUN_CMD mkdir -p $HOME/.config/keepassxc
+      $DRY_RUN_CMD touch $HOME/.config/keepassxc/keepass.ini
+
       # Modify Browser section
       $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Browser AllowExpiredCredentials true
 
@@ -49,7 +52,6 @@ in {
 
     # jetbrains.idea-ultimate # crashes, manual install works better, see scripts/post/intellij.sh
 
-    keepassxc
     postman
     xdg-utils
 
@@ -80,6 +82,7 @@ in {
     "bg.sh" = {
       text = ''
         #!/bin/bash
+        set -e
 
         # check if parameter is passed
         if [ -z "$1" ]; then
@@ -96,6 +99,7 @@ in {
     "mul.sh" = {
       text = ''
         #!/bin/bash
+        set -e
 
         # Define input variables
         APP1="$1"

@@ -88,6 +88,9 @@ in {
       openssh
       onedrive
 
+      # in order to have access to keepassxc-cli
+      keepassxc
+
       # see https://determinate.systems/posts/nix-home-env
       direnv
     ]
@@ -103,6 +106,7 @@ in {
           "vs-ssh.visualstudio.com"
        )
 
+       mkdir -p $HOME/.ssh
        # Check if known_hosts file exists, if not create it
        if [ ! -f $HOME/.ssh/known_hosts ]; then
            touch $HOME/.ssh/known_hosts
@@ -120,11 +124,13 @@ in {
 
   # führt ggf. zu problemen, evtl mit bash verknüpfung starten und wieder entfernen
   # systemctl --user restart onedrive.service
+  # journalctl --no-pager | grep -i onedrive
   systemd.user.services.onedrive = {
-    Unit.Description = "Start onedrive";
+    Unit.Description = "Starting service onedrive";
     Unit.After = ["network.target"];
-    Unit.ConditionPathExists = "$HOME/.config/onedrive/refresh_token";
-    Service.ExecStart = "${pkgs.lib.getExe pkgs.onedrive} --monitor";
+    # TODO: path nicht hardcodieren, muss aber ein absoluter pfad sein
+    Unit.ConditionPathExists = "/home/rstauch/.config/onedrive/refresh_token";
+    Service.ExecStart = "${pkgs.lib.getExe pkgs.onedrive} --monitor --single-directory projects --verbose";
     Install.WantedBy = ["default.target"];
   };
 }

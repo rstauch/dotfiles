@@ -1,7 +1,4 @@
 #!/bin/bash
-
-# ACHTUNG: Script aktuell nicht getestet!
-
 set -e
 
 INTELLIJ_VERSION="2022.3.3"
@@ -14,10 +11,12 @@ sudo apt-get install -y libxss1 libatk-bridge2.0-0 libcups2 libxdamage1 libgbm1 
 mkdir -p $HOME/Downloads/intellij
 cd $HOME/Downloads
 wget https://download-cdn.jetbrains.com/idea/ideaIU-${INTELLIJ_VERSION}.tar.gz
-xvf ideaIU-${INTELLIJ_VERSION}.tar.gz -C intellij
-rm *.tar.gz
+tar xvf ideaIU-${INTELLIJ_VERSION}.tar.gz -C intellij
+rm ideaIU-${INTELLIJ_VERSION}.tar.gz
 
-sh $HOME/Downloads/intellij/idea-IU-${INTELLIJ_INTERNAL_VERSION}/bin/idea.sh
+ln -sf "$HOME/Downloads/intellij/idea-IU-${INTELLIJ_INTERNAL_VERSION}/bin/idea.sh" "$HOME/idea.sh"
+
+echo "Finished Installing IntelliJ ${INTELLIJ_INTERNAL_VERSION}"
 
 # evtl. idea64.vmoptions anpassen falls random crashes auftreten:
 # -Xmx10000m

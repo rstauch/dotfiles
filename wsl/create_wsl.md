@@ -22,11 +22,10 @@ Clone the repository locally:
 # disable execution policy temporarily
 PowerShell -ExecutionPolicy Bypass
 
-.\CreateLinuxDistro.ps1 -INPUT_FILENAME F:\downloads\ubuntu-20.04-wsl-rootfs-tar.gz -OUTPUT_DIRNAME "D:\code\wsl" -OUTPUT_DISTRONAME wsl-ubuntu-2004-test-1 -CREATE_USER_USERNAME rstauch
-
+.\CreateLinuxDistro.ps1 -INPUT_FILENAME F:\downloads\ubuntu-20.04-wsl-rootfs-tar.gz -OUTPUT_DIRNAME "D:\code\wsl" -OUTPUT_DISTRONAME wsl-ubuntu-2004-test-basic -CREATE_USER_USERNAME rstauch
 ```
 ## Next steps
-- create shortcut `C:\Windows\System32\wsl.exe --distribution wsl-ubuntu-2004-test -u rstauch --cd "~"`
+- create shortcut `C:\Windows\System32\wsl.exe --distribution wsl-ubuntu-2004-test-2 -u rstauch --cd "~"`
 - setup docker (via docker desktop) and verify working w/ `docker ps -a` and `docker run hello-world`
 
 # Delete WSL2 distribution

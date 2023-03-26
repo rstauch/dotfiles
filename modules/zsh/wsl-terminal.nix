@@ -13,5 +13,5 @@ in {
   pbcopy = "${pkgs.lib.getExe pkgs.xclip} -selection clipboard";
   pbpaste = "${pkgs.lib.getExe pkgs.xclip} -selection clipboard -o";
 
-  os = "${pkgs.lib.getExe pkgs.onedrive} --synchronize";
+  os = "${pkgs.lib.getExe pkgs.onedrive} --synchronize --single-directory projects --verbose";
 }

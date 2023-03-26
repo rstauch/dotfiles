@@ -1,5 +1,5 @@
 #!/bin/bash
-# set -e
+set -e
 
 rm $HOME/.config/home-manager/home.nix* || true
 
@@ -22,9 +22,6 @@ else
 fi
 
 source $HOME/.profile
-
-# throw errors from here on out
-set -e
 
 echo "Please enter the name of the template to be applied, ie: wsl-x11 (use <RETURN> to confirm):"
 read -r chosen_sys
