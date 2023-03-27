@@ -143,11 +143,30 @@ in {
     };
   };
 
+  home.packages = with pkgs; [
+    moreutils
+  ];
+
   home.activation = {
     allow_extension_in_private_mode = lib.hm.dag.entryAfter ["writeBoundary"] ''
       # Set the path to the JSON file
       subdir="$HOME/.mozilla/firefox/default"
       $DRY_RUN_CMD mkdir -p "$subdir"
+
+        # enable extensions
+        json_file="$subdir/extensions.json"
+        keys=(
+          "addon@darkreader.org"
+          "keepassxc-browser@keepassxc.org"
+          "uBlock0@raymondhill.net"
+        )
+        for key in "''${keys[@]}"
+        do
+            $DRY_RUN_CMD jq '.addons |= map(if .id == "$key" then .active = true | .userDisabled = true else . end)' "$json_file" | sponge "$json_file"
+        done
+        # $DRY_RUN_CMD jq '.addons |= map(if .id == "addon@darkreader.org" then .active = true | .userDisabled = true else . end)' "$json_file" | sponge "$json_file"
+
+
       json_file="$subdir/extension-preferences.json"
 
       # Check if the JSON file exists
@@ -159,13 +178,6 @@ in {
 
       # Get the existing data from the JSON file
       existing_data=$(cat "$json_file")
-
-      # extensions to be allowed in private windows
-      keys=(
-        "addon@darkreader.org"
-        "keepassxc-browser@keepassxc.org"
-        "uBlock0@raymondhill.net"
-      )
 
       # Loop through the keys and merge them with the existing data
       for key in "''${keys[@]}"
