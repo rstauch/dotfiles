@@ -47,7 +47,6 @@ in {
     options = ["--cmd cd"];
   };
 
-  # C:\Windows\System32\wsl.exe --distribution Ubuntu-20.04 -u rstauch --cd "~" -e bash -lc zsh
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;

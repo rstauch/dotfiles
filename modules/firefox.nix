@@ -1,4 +1,4 @@
-# TODO: extensions are disabled by default ?! (neu-installation vorher/nachher Umstellung vergleichen)
+# TODO: extensions are disabled by default ?!
 {
   pkgs,
   lib,
@@ -144,7 +144,6 @@ in {
   };
 
   home.packages = with pkgs; [
-    moreutils
   ];
 
   home.activation = {

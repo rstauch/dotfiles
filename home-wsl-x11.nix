@@ -20,6 +20,7 @@
   firefox = import ./modules/firefox.nix {
     inherit pkgs;
     inherit lib;
+    # template specific email to be used for firefox
     email = "project@fluxdev.de";
   };
 
@@ -127,7 +128,7 @@ in {
 
   # set specific properties
   # programs.git = {
-  #   userName = pkgs.lib.mkForce "WSL_X11_Robert Stauch";
-  #   userEmail = pkgs.lib.mkForce "WSL_X11_robert.stauch@fluxdev.de";
+  #   userName = pkgs.lib.mkForce "some-thing-else";
+  #   userEmail = pkgs.lib.mkForce "some-other-email@bla.de";
   # };
 }

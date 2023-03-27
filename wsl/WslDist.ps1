@@ -107,6 +107,10 @@ Param (
     [bool]
     $LOGIN_ONEDRIVE = $true,
 
+    [Parameter()]
+    [bool]
+    $INSTALL_INTELLIJ = $true,
+
     [Parameter(
         Mandatory = $true,
         ValueFromPipeline = $true,
@@ -200,6 +204,7 @@ begin {
         Write-Host "Finished installing dotfiles"
     }
 
+    # TODO: flag setzen
     function Install-IntelliJ {
         Write-Host "Install IntellJ Ultimate"
 
@@ -338,7 +343,9 @@ process {
 
             Create-WslKeepassDatabase
 
-            Install-IntelliJ
+            if ($INSTALL_INTELLIJ) {
+                Install-IntelliJ
+            }
 
             # restart to finish up and start onedrive monitoring
             Restart-Wsl

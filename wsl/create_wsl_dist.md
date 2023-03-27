@@ -36,10 +36,16 @@ PowerShell -ExecutionPolicy Bypass
 
 # optional paramters
 # -UPDATE_OS true/false: run apt-get upgrade
-# -INSTALL_DOTFILES true/false: clone dotfiles repo (https://github.com/rstauch/dotfiles)
+# -INSTALL_DOTFILES true/false: clone dotfiles repo
 # -LOGIN_ONEDRIVE true/false: synchronize with OneDrive
 # -WSL_KEEPASS_DB_PASSWORD [string]: password for pre-populated keepassxc database stored at ~/keepass_wsl.kdbx
 ```
+
+## Keepass DB
+````shell
+# keepass db (kepass_wsl.kdbx) can be found at ~
+# open with keepassxc or keepassxc-cli
+````
 
 # Delete WSL2 distribution
 As stated in the [official documentation](https://docs.microsoft.com/en-us/windows/wsl/wsl-config)

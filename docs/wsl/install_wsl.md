@@ -65,6 +65,7 @@ cd scripts/post
 - start with `ff` (incl. **Keepass**) or with `firefox`
 - log into Firefox and enable settings sync
   - save Firefox credentials to Keepass vault
+- pot. enable all pre-installed extensions (`about:addons`)
 - check Connection Keepass Browser Plugin to KeepassXC
 
 ### Notion
@@ -89,9 +90,8 @@ onedrive
 ---
 
 TODO: offene Punkte:
-Darwin; Cheatsheet,
+Darwin; Cheatsheet (shortcuts),
 ? vscode plugin scratchpad
-? vscode keybindings wie intellij  
-readme inkl. shortcuts  
+? vscode keybindings wie intellij
 ff sync profil evtl. über env steuern (aus wsl script)
 cleanup: rstauch, projects@fluxdev über parameter steuern

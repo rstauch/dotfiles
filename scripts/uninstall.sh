@@ -8,5 +8,3 @@ if grep -q ". \"$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh\"" $HOME/.pr
 else
   echo 'The line is not in $HOME/.profile'
 fi
-
-# TODO: evtl. config dirs in $HOME/.config löschen ?

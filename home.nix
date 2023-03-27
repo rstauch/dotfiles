@@ -2,7 +2,6 @@
 # SYSTEM="wsl-terminal" home-manager switch --file ./home.nix --dry-run
 # SYSTEM="darwin" home-manager switch --file ./home.nix --dry-run
 # SYSTEM="else" home-manager switch --file ./home.nix --dry-run
-# cat /home/rstauch/test.test
 {
   config,
   pkgs,

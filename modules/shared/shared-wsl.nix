@@ -129,9 +129,8 @@ in {
   systemd.user.services.onedrive = {
     Unit.Description = "Starting service onedrive";
     Unit.After = ["network.target"];
-    # TODO: path nicht hardcodieren, muss aber ein absoluter pfad sein
-    Unit.ConditionPathExists = "/home/rstauch/.config/onedrive/refresh_token";
-    Service.ExecStart = "${pkgs.lib.getExe pkgs.onedrive} --monitor --single-directory projects --verbose";
+    Unit.ConditionPathExists = "/home/${config.username}/.config/onedrive/refresh_token";
+    Service.ExecStart = "${pkgs.lib.getExe pkgs.onedrive} --monitor --single-directory projects";
     Install.WantedBy = ["default.target"];
   };
 }
