@@ -160,12 +160,6 @@ in {
           "keepassxc-browser@keepassxc.org"
           "uBlock0@raymondhill.net"
         )
-        for key in "''${keys[@]}"
-        do
-            $DRY_RUN_CMD jq '.addons |= map(if .id == "$key" then .active = true | .userDisabled = true else . end)' "$json_file" | sponge "$json_file"
-        done
-        # $DRY_RUN_CMD jq '.addons |= map(if .id == "addon@darkreader.org" then .active = true | .userDisabled = true else . end)' "$json_file" | sponge "$json_file"
-
 
       json_file="$subdir/extension-preferences.json"
 

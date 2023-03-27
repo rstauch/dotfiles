@@ -108,8 +108,8 @@ in {
         # Check if APP2 is running
         if ! pgrep -xf "$APP2" > /dev/null; then
             # If APP2 is not running, start it
-            echo "$APP2 is not running. Starting it now..."
-            sh bg.sh "$APP2"
+            echo "Required app $APP2 is NOT already running. Starting it now..."
+            sh $HOME/bg.sh "$APP2"
         fi
 
         # Wait for APP2 to start
@@ -118,8 +118,8 @@ in {
         done
 
         # Start APP1 after APP2 has started
-        echo "Starting $APP1 now..."
-        sh bg.sh "$APP1"
+        echo "Starting main app $APP1 now..."
+        sh $HOME/bg.sh "$APP1"
       '';
       executable = true;
     };
