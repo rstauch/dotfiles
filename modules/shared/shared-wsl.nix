@@ -125,6 +125,7 @@ in {
   # führt ggf. zu problemen, evtl mit bash verknüpfung starten und wieder entfernen
   # systemctl --user restart onedrive.service
   # journalctl --no-pager | grep -i onedrive
+  # systemctl list-unit-files --type=service
   systemd.user.services.onedrive = {
     Unit.Description = "Starting service onedrive";
     Unit.After = ["network.target"];

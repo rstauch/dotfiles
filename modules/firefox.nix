@@ -1,3 +1,4 @@
+# TODO: extensions are disabled by default ?! (neu-installation vorher/nachher Umstellung vergleichen)
 {
   pkgs,
   lib,

@@ -31,7 +31,7 @@ in {
     # setup keepass for browser
     keepass_ini = lib.hm.dag.entryAfter ["writeBoundary"] ''
       $DRY_RUN_CMD mkdir -p $HOME/.config/keepassxc
-      $DRY_RUN_CMD touch $HOME/.config/keepassxc/keepass.ini
+      $DRY_RUN_CMD touch $HOME/.config/keepassxc/keepassxc.ini
 
       # Modify Browser section
       $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Browser AllowExpiredCredentials true

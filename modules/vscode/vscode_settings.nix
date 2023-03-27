@@ -40,6 +40,7 @@ in {
     git.postCommitCommand = "push";
 
     git.allowForcePush = true;
+    git.openRepositoryInParentFolders = "always";
 
     editor.formatOnSave = true;
     timeline.pageOnScroll = true;
