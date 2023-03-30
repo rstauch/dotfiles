@@ -34,10 +34,11 @@ PowerShell -ExecutionPolicy Bypass
 # or, with auto-download:
 # .\WslDist.ps1 -OUTPUT_DIR "D:\code\wsl" -DISTRO wsl-ubuntu-2004-test-basic -USR rstauch
 
-# optional paramters
-# -UPDATE_OS true/false: run apt-get upgrade
-# -INSTALL_DOTFILES true/false: clone dotfiles repo
-# -LOGIN_ONEDRIVE true/false: synchronize with OneDrive
+# additional paramters
+# -UPDATE_OS true/false: run apt-get upgrade (default true)
+# -INSTALL_DOTFILES true/false: clone dotfiles repo (default true)
+# -LOGIN_ONEDRIVE true/false: synchronize with OneDrive (default true)
+# -INSTALL_INTELLIJ true/false: install IntelliJ in a post-installation step (default true)
 # -WSL_KEEPASS_DB_PASSWORD [string]: password for pre-populated keepassxc database stored at ~/keepass_wsl.kdbx
 ```
 
