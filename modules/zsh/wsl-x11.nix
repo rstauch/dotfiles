@@ -33,7 +33,7 @@ in {
   libreoffice = "sh $HOME/bg.sh '${pkgs.libreoffice}/bin/soffice'";
   lo = "sh $HOME/bg.sh '${pkgs.libreoffice}/bin/soffice'";
 
-  idea = "sh $HOME/bg.sh $HOME/idea.sh";
+  idea = "fc-cache -f -v && sh $HOME/bg.sh $HOME/idea.sh";
 
   os = "${pkgs.lib.getExe pkgs.onedrive} --synchronize --single-directory projects --verbose";
 

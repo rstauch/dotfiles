@@ -53,13 +53,13 @@ cd scripts/post
 ./intellij.sh
 ```
 #### Manual Steps
+*Note*: bei seltsamen Problemen (ui-glitches, copy/paste funktioniert nicht, etc.) kann es helfen, *VcXsrv* neuzustarten
+- start *IntelliJ* from anywhere with command: `idea`
 - login into IntelliJ with JetBrains account
 - enable settings sync: pull settings from account
-- set setting: *Enable stating area*
+- set setting: *Enable staging area*
 - evtl. setting: *store passwords in keepass* aktivieren
 - login into copilot via *Tools -> Copilot -> Login to Github*
-- bei seltsamen Problemen (ui-glitches, copy/paste funktioniert nicht, etc.) kann es helfen, *VcXsrv* neuzustarten
-- start *IntelliJ* from anywhere with command: `idea`
 
 ### Setup Firefox
 - start with `ff` (incl. **Keepass**) or with `firefox`
@@ -90,8 +90,7 @@ onedrive
 ---
 
 TODO: offene Punkte:
-Darwin; Cheatsheet (shortcuts),
+Darwin;
 ? vscode plugin scratchpad
 ? vscode keybindings wie intellij
 ff sync profil evtl. über env steuern (aus wsl script)
-cleanup: rstauch, projects@fluxdev über parameter steuern

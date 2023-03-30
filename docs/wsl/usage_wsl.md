@@ -11,6 +11,9 @@ sh scripts/install.sh
 # enter different template name than before and open a new shell after successful installation
 ```
 
+## TODO: switch JAVA version
+- evtl. dir-env ?
+
 ### Install System Updates
 - **Note:** durch WSL install script vollumfänglich abgedeckt `-UPDATE_OS true` (default)
 ```shell

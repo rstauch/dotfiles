@@ -7,7 +7,8 @@ in {
   home.sessionVariables = {
     JAVA_11_HOME = "${jdk11-low}/lib/openjdk";
     JAVA_17_HOME = "${pkgs.jdk17}/lib/openjdk";
-    JAVA_HOME = "${pkgs.jdk17}/lib/openjdk";
+#    JAVA_HOME = "${pkgs.jdk17}/lib/openjdk";
+    JAVA_HOME = "${pkgs.jdk11}/lib/openjdk";
 
     # required for intellij to work
     # ggf. VcXsrv neustarten wenn artifakte auftrreten

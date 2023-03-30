@@ -24,7 +24,7 @@ in {
   # history = CTRL + R
   # subdirs filesearch = CTRL + T
   # alternativ: cd ** + TAB bzw cat ** + TAB um fuzzy search zu öffnen
-  # enter subdir = AL T +C
+  # enter subdir = ALT+C
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
