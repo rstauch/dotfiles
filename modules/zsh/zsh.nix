@@ -71,6 +71,8 @@ in {
 
       # enable preview with bat/cat/less
       zstyle ':fzf-tab:complete:(bat|cat|less):*' fzf-preview '${pkgs.lib.getExe pkgs.bat} --color=always --style=numbers --line-range=:1000 $realpath'
+
+      eval "$(direnv hook zsh)"
     '';
     autocd = true;
 

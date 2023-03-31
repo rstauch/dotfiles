@@ -8,7 +8,7 @@ in {
   hmu = "cd ${PROJECT_ROOT}/scripts && nix-channel --update && ./apply.sh && cd $OLDPWD";
   hme = "home-manager edit";
 
-  # TODO: test (+aufschreiben) use with windows vscode
+  # TODO: test (+dokumentieren) Verwendung with windows vscode
   # should be equivalent to hme
   dot = "${pkgs.lib.getExe pkgs.vscode} ${PROJECT_ROOT}";
 

@@ -204,7 +204,6 @@ begin {
         Write-Host "Finished installing dotfiles"
     }
 
-    # TODO: flag setzen
     function Install-IntelliJ {
         Write-Host "Install IntellJ Ultimate"
 
@@ -333,7 +332,6 @@ process {
         Restart-Wsl
 
         if ($INSTALL_DOTFILES) {
-            # TODO: test with wsl-terminal profil
             Install-Dotfiles
 
             if ($LOGIN_ONEDRIVE) {

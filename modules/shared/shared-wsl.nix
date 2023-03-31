@@ -93,6 +93,8 @@ in {
 
       # see https://determinate.systems/posts/nix-home-env
       direnv
+      # see https://determinate.systems/posts/nix-direnv
+      nix-direnv
     ]
     ++ [custom_python_enviroment];
 

@@ -11,8 +11,21 @@ sh scripts/install.sh
 # enter different template name than before and open a new shell after successful installation
 ```
 
-## TODO: switch JAVA version
-- evtl. dir-env ?
+## Switch Java version (direnv)
+```shell
+cd $PROJECT_DIR
+cp $DOTIFLES_DIR/direnv/java/11/*
+direnv allow
+# test with:
+# echo $JAVA_HOME
+# java -version
+# mvn --version
+# gradle -v
+
+# disable with: direnv deny
+
+# evtl. .gitignore.local anlegen und zu .gitignore hinzufügen, dann .envrc und shell.nix auf .gitignore.local hinzufügen
+``` 
 
 ### Install System Updates
 - **Note:** durch WSL install script vollumfänglich abgedeckt `-UPDATE_OS true` (default)

@@ -58,6 +58,9 @@ cd scripts/post
 - login into IntelliJ with JetBrains account
 - enable settings sync: pull settings from account
 - set setting: *Enable staging area*
+- set directory settings: 
+  - open files with single click
+  - always select opened file
 - evtl. setting: *store passwords in keepass* aktivieren
 - login into copilot via *Tools -> Copilot -> Login to Github*
 
