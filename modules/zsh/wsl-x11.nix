@@ -38,4 +38,6 @@ in {
   os = "${pkgs.lib.getExe pkgs.onedrive} --synchronize --single-directory projects --verbose";
 
   meld = "sh $HOME/bg.sh ${pkgs.lib.getExe pkgs.meld}";
+
+  setup = "$HOME/setup.sh";
 }

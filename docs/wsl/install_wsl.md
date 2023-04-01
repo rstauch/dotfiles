@@ -90,6 +90,13 @@ onedrive
 - create project specific folder in home directory to be synced, i.e: `mkdir -p $HOME/OneDrive/projects/TetstProject`
 - load monitor service: `systemctl --user restart onedrive.service`
 
+### Run setup script
+```shell
+# sets up repos, direnv etc
+# zsh alias for $HOME/setup.sh
+setup
+```
+
 ---
 
 TODO: offene Punkte:

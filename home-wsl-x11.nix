@@ -5,6 +5,8 @@
   lib,
   ...
 }: let
+  PROJECT_ROOT = builtins.toString ./.;
+
   shared = import ./modules/shared/shared.nix {
     inherit pkgs;
     inherit config;
@@ -49,7 +51,7 @@ in {
   };
 
   home.packages = with pkgs; [
-    pkgs.google-chrome
+    google-chrome
 
     # jetbrains.idea-ultimate # crashes, manual install works better, see scripts/post/intellij.sh
 
@@ -80,6 +82,70 @@ in {
   };
 
   home.file = {
+    "setup.sh" = {
+      text = ''
+        #!/bin/bash
+        set -e
+
+        function clone_or_reset_repo {
+            local repo_name="$1"
+            local repo_url="git@ssh.dev.azure.com:v3/INGCDaaS/IngOne/$repo_name"
+            local target_dir="$HOME/projects/$repo_name"
+
+            pushd . >/dev/null
+
+            if [ ! -d "$target_dir" ]; then
+                # If the target directory doesn't exist, clone the repository
+                ${pkgs.lib.getExe pkgs.git} clone "$repo_url" "$target_dir"
+            else
+                # If the target directory exists, fetch the latest changes from remote and reset the local branch
+                cd "$target_dir"
+                ${pkgs.lib.getExe pkgs.git} fetch origin
+                ${pkgs.lib.getExe pkgs.git} reset --hard origin/master
+            fi
+            cd "$target_dir"
+            mvn clean install
+
+            popd >/dev/null
+        }
+
+        function clone_repo {
+            pushd . >/dev/null
+
+            local repo_name="$1"
+            local repo_url="git@ssh.dev.azure.com:v3/INGCDaaS/IngOne/$repo_name"
+            local target_dir="$HOME/projects/$repo_name"
+
+            if [ ! -d "$target_dir" ]; then
+                ${pkgs.lib.getExe pkgs.git} clone "$repo_url" "$target_dir"
+            else
+                echo "repo $repo_name already exists and is left untouched"
+            fi
+
+            echo "setup direnv (java11)"
+            cp "${PROJECT_ROOT}/direnv/java/11/.envrc" "$target_dir"
+            cp "${PROJECT_ROOT}/direnv/java/11/shell.nix" "$target_dir"
+
+            cd "$target_dir"
+            echo "direnv init..."
+            ${pkgs.lib.getExe pkgs.direnv} allow
+
+            mvn clean install -DskipTests
+
+            echo "DONE!"
+            popd >/dev/null
+        }
+
+        mkdir -p "$HOME/projects"
+
+        clone_or_reset_repo "P03381-key-derivation-function"
+        clone_or_reset_repo "P03381-cmp-client"
+
+        clone_repo "P03381-autocert-reg-authority"
+      '';
+      executable = true;
+    };
+
     "bg.sh" = {
       text = ''
         #!/bin/bash
