@@ -7,7 +7,7 @@
 in {
   home.sessionVariables = {
     SHELL = "${pkgs.zsh}/bin/zsh";
-    BAT_PAGER = "less -RF --mouse --wheel-lines=3";
+    BAT_PAGER = "${pkgs.less}/bin/less -RF --mouse --wheel-lines=3";
     ZSH_TMUX_AUTOSTART = "false";
   };
 
@@ -19,6 +19,8 @@ in {
 
     # fzf preview
     pkgs.lesspipe
+
+    pkgs.less
   ];
 
   # history = CTRL + R

@@ -95,6 +95,8 @@ in {
       direnv
       # see https://determinate.systems/posts/nix-direnv
       nix-direnv
+
+      less
     ]
     ++ [custom_python_enviroment];
 
@@ -134,5 +136,10 @@ in {
     Unit.ConditionPathExists = "/home/${config.username}/.config/onedrive/refresh_token";
     Service.ExecStart = "${pkgs.lib.getExe pkgs.onedrive} --monitor --single-directory projects";
     Install.WantedBy = ["default.target"];
+  };
+
+  home.sessionVariables = {
+    GIT_PAGER = "";
+    PAGER = "${pkgs.less}/bin/less -RF --mouse --wheel-lines=3";
   };
 }
