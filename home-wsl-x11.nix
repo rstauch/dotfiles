@@ -193,8 +193,8 @@ in {
   };
 
   # set specific properties
-  # programs.git = {
-  #   userName = pkgs.lib.mkForce "some-thing-else";
-  #   userEmail = pkgs.lib.mkForce "some-other-email@bla.de";
-  # };
+  programs.git = {
+    userName = pkgs.lib.mkForce "Stauch, R. (Robert)";
+    userEmail = pkgs.lib.mkForce "robert.stauch.extern@ing.de";
+  };
 }
