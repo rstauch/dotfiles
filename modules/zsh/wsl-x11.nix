@@ -30,8 +30,8 @@ in {
   postman = "sh $HOME/bg.sh ${pkgs.lib.getExe pkgs.postman}";
   keepassxc = "sh $HOME/bg.sh ${pkgs.lib.getExe pkgs.keepassxc}";
 
-  libreoffice = "sh $HOME/bg.sh '${pkgs.libreoffice}/bin/soffice'";
-  lo = "sh $HOME/bg.sh '${pkgs.libreoffice}/bin/soffice'";
+  # libreoffice = "sh $HOME/bg.sh '${pkgs.libreoffice}/bin/soffice'";
+  # lo = "sh $HOME/bg.sh '${pkgs.libreoffice}/bin/soffice'";
 
   idea = "fc-cache -f -v >/dev/null 2>&1 && _JAVA_OPTIONS='-Xmx10000M -Dremote.x11.workaround=false -Dsun.java2d.metal=false' sh $HOME/bg.sh $HOME/idea.sh";
 

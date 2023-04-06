@@ -1,5 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
-let
+{pkgs ? import <nixpkgs> {}}: let
   jdk = pkgs.jdk11;
 
   # point gradle to the jdk
@@ -7,12 +6,16 @@ let
     java = jdk;
   };
 
-in pkgs.mkShell {
-  buildInputs = [
-    jdk
-    gradle
-  ];
-  shellHook = ''
-    export JAVA_HOME="${jdk}/lib/openjdk"
-  '';
-}
+  graalvm = pkgs.graalvm11-ce;
+in
+  pkgs.mkShell {
+    buildInputs = [
+      graalvm
+      jdk
+      gradle
+    ];
+    shellHook = ''
+      export JAVA_HOME="${jdk}/lib/openjdk"
+      export GRAALVM_HOME="${graalvm}"
+    '';
+  }

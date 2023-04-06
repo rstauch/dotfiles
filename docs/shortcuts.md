@@ -59,7 +59,7 @@ ff      # start Firefox and Keepass (if not already started)
 idea    # start IntelliJ
 
 chrome | google-chrome | google-chrome-stable
-libreoffice | lo
+# libreoffice | lo
 
 ```
 

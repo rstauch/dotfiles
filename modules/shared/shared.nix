@@ -93,6 +93,8 @@ in {
 
     # newman
     # lazydocker
+
+    tree
   ];
 
   home.username = "rstauch";

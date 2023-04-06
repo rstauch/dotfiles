@@ -58,11 +58,11 @@ in {
     postman
     xdg-utils
 
-    libreoffice-fresh
+    # libreoffice-fresh
     # Spellcheck
-    hunspell
-    hunspellDicts.de_DE
-    hunspellDicts.en_US
+    # hunspell
+    # hunspellDicts.de_DE
+    # hunspellDicts.en_US
 
     # Visual diff and merge tool
     meld
