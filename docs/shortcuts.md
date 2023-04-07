@@ -3,7 +3,8 @@
 ### zsh Aliase
 ```shell
 # Home-Manager
-hmu # apply update
+hmu # apply nix update
+hmus # apply nix update and run setup script
 hme # open rel. home.nix in EDITOR
 
 # convenience

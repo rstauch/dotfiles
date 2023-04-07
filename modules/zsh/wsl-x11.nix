@@ -6,6 +6,10 @@ in {
   c = "clear";
 
   hmu = "cd ${PROJECT_ROOT}/scripts && nix-channel --update && ./apply.sh && cd $OLDPWD";
+
+  # run setup script as well
+  hmus = "cd ${PROJECT_ROOT}/scripts && nix-channel --update && ./apply.sh && setup && cd $OLDPWD";
+
   hme = "home-manager edit";
   # should be equivalent to hme
   dot = "${pkgs.lib.getExe pkgs.vscode} ${PROJECT_ROOT}";

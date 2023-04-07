@@ -82,6 +82,7 @@ in {
   };
 
   home.file = {
+    # muss neu ausgeführt werden wenn sich direnv config ändert
     "setup.sh" = {
       text = ''
         #!/bin/bash
