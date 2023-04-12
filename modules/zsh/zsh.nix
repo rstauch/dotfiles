@@ -143,6 +143,7 @@ in {
         "tmux"
 
         "zoxide"
+        "mvn"
         # 1password
         # adb
         # aws
