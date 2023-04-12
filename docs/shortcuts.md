@@ -67,10 +67,10 @@ chrome | google-chrome | google-chrome-stable
 ## Darwin
 TODO
 
-## IntelliJ (XWin copy)
+## IntelliJ (RS Win)
 `alt+a` recent projects  
 `alt+t` Terminal  
-`alt+h` Call Hierarchy  
+() `alt+h` Call Hierarchy  
 `alt+plus` Comment Block  
 `alt+w` Word Wrap  
 `alt+m` Extract Method  
