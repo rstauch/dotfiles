@@ -19,6 +19,7 @@ curl (("https://cloud-images.ubuntu.com",
 ## Execute Script
 ```powershell
 # clone the repository locally:
+# (D:\code\dotfiles)
 cd $PROJECTS
 git clone git@github.com:rstauch/dotfiles.git # or: git clone https://github.com/rstauch/dotfiles.git
 
@@ -29,7 +30,7 @@ PowerShell -ExecutionPolicy Bypass
 .\WslDist.ps1 -OUTPUT_DIR "D:\code\wsl" -DISTRO "wsl-ubuntu-2004-test" -USR rstauch
 
 # start script (with specific image)
-.\WslDist.ps1 -INPUT F:\downloads\ubuntu-20.04-server-cloudimg-amd64-wsl.rootfs.tar.gz -OUTPUT_DIR "D:\code\wsl" -DISTRO wsl-ubuntu-2004-test -USR rstauch
+.\WslDist.ps1 -INPUT F:\downloads\ubuntu-20.04-server-cloudimg-amd64-wsl.rootfs.tar.gz -OUTPUT_DIR "D:\code\wsl" -DISTRO "wsl-ubuntu-2004-test" -USR rstauch
 
 # or, with auto-download:
 # .\WslDist.ps1 -OUTPUT_DIR "D:\code\wsl" -DISTRO wsl-ubuntu-2004-test-basic -USR rstauch
