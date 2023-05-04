@@ -23,7 +23,7 @@ fi
 
 source $HOME/.profile
 
-echo "Please enter the name of the template to be applied, ie: wsl-x11 (use <RETURN> to confirm):"
+echo "Please enter the name of the template to be applied, ie: wsl-x11, wsl-x11-pfh (use <RETURN> to confirm):"
 read -r chosen_sys
 if [ -z "$chosen_sys" ]; then
   echo "No template name was provided. Exiting."
