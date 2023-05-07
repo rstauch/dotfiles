@@ -25,7 +25,7 @@ in {
         #github.copilot
       ]
       ++ (with pkgs.nur.repos.slaier.vscode-extensions; [
-        ms-vscode-remote.remote-containers
+        #  ms-vscode-remote.remote-containers
       ]);
   };
 
