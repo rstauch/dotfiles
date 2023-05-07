@@ -48,3 +48,6 @@ fi
 SYSTEM="$chosen_sys" SSH_PRV_KEY="$ssl_private_key" home-manager switch -b backup --file ./../home.nix
 
 echo "SUCCESS -> restart shell for changes to take effect"
+
+echo "attempt cleanup"
+nix-collect-garbage

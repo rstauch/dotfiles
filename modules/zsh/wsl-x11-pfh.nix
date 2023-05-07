@@ -14,6 +14,8 @@ in {
   # should be equivalent to hme
   dot = "${pkgs.lib.getExe pkgs.vscode} ${PROJECT_ROOT}";
 
+  hm-gc = "nix-collect-garbage";
+
   # simulate mac
   pbcopy = "${pkgs.lib.getExe pkgs.xclip} -selection clipboard";
   pbpaste = "${pkgs.lib.getExe pkgs.xclip} -selection clipboard -o";
