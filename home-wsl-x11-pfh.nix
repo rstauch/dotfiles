@@ -46,6 +46,10 @@ in {
 
     # Visual diff and merge tool
     meld
+
+    minikube
+    kubectl
+    kubernetes-helm
   ];
 
   home.sessionVariables = {

@@ -153,6 +153,15 @@ in {
         # gitflow ?
         # fzf ?
         # tmuxinator ?
+
+        # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/helm
+        "helm"
+
+        # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/minikube
+        "minikube"
+
+        # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/kubectl
+        "kubectl"
       ];
       theme = "simple";
     };
