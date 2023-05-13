@@ -11,7 +11,7 @@
     with python-packages; [
       numpy
       pandas
-      # pip
+      pip
     ];
   custom_python_enviroment = pkgs.python311.withPackages custom_python_packages;
 
@@ -97,8 +97,18 @@ in {
       nix-direnv
 
       less
+      du-dust
+      bottom
     ]
     ++ [custom_python_enviroment];
+
+  programs.broot = {
+    enable = true;
+
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+    enableZshIntegration = true;
+  };
 
   home.activation = {
     known_hosts = lib.hm.dag.entryAfter ["writeBoundary"] ''
