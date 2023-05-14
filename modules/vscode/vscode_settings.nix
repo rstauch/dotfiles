@@ -25,6 +25,7 @@ in {
     ];
 
     keyboard.dispatch = "keyCode";
+    explorer.confirmDragAndDrop = false;
 
     window.title = "\${activeEditorLong}";
     editor.mouseWheelZoom = true;

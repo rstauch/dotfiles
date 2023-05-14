@@ -68,7 +68,7 @@
     inherit platform;
   };
 
-  k8s = import ./../k8s/k8s.nix {
+  k8s = import ./../k8s.nix {
     inherit pkgs;
   };
 
@@ -89,7 +89,6 @@ in {
   # install dependencies shared between all wsl instances
   home.packages = with pkgs;
     [
-      openssh
       onedrive
 
       # in order to have access to keepassxc-cli
@@ -101,8 +100,6 @@ in {
       nix-direnv
 
       less
-      du-dust
-      bottom
     ]
     ++ [custom_python_enviroment];
 
