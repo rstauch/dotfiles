@@ -2,16 +2,17 @@
   PROJECT_ROOT = builtins.toString ./../../.;
 in {
   l = "ls -lah --group-directories-first --color=auto";
-  lsl = "exa -la --group-directories-first --color=auto --no-user --no-permissions --header --no-time";
+  lsl = "${pkgs.lib.getExe pkgs.exa} -la --group-directories-first --color=auto --no-user --no-permissions --header --no-time";
   cls = "clear";
   c = "clear";
 
-  tree = "exa --tree --level 3 --all --group-directories-first --no-permissions --no-time";
-  bottom = "btm";
+  tree = "${pkgs.lib.getExe pkgs.exa} --tree --level 3 --all --group-directories-first --no-permissions --no-time";
+  bottom = "${pkgs.lib.getExe pkgs.bottom}";
   br = "br --cmd ':open_preview'";
 
   hmu = "cd ${PROJECT_ROOT}/scripts && nix-channel --update && ./apply.sh && cd $OLDPWD && hm-gc";
-  mk = "minikube";
+  mk = "${pkgs.lib.getExe pkgs.minikube}";
+  upd = "sudo apt-get update && sudo apt-get upgrade -y";
 
   # run setup script as well
   hmus = "cd ${PROJECT_ROOT}/scripts && nix-channel --update && ./apply.sh && setup && cd $OLDPWD";
