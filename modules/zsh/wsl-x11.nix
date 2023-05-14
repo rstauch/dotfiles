@@ -11,6 +11,7 @@ in {
   br = "br --cmd ':open_preview'";
 
   hmu = "cd ${PROJECT_ROOT}/scripts && nix-channel --update && ./apply.sh && cd $OLDPWD && hm-gc";
+  mk = "minikube";
 
   # run setup script as well
   hmus = "cd ${PROJECT_ROOT}/scripts && nix-channel --update && ./apply.sh && setup && cd $OLDPWD";

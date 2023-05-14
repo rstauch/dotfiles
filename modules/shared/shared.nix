@@ -82,12 +82,6 @@ in {
     # A utility that combines the usability of The Silver Searcher with the raw speed of grep, https://github.com/BurntSushi/ripgrep
     ripgrep
 
-    # kubectl
-    # kubernetes-helm
-
-    # kubectx, https://github.com/ahmetb/kubectx
-
-    # k9s
     # terraform
     # awscli2
 

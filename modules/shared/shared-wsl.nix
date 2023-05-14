@@ -68,7 +68,11 @@
     inherit platform;
   };
 
-  imports = [vscode zsh tmux];
+  k8s = import ./../k8s/k8s.nix {
+    inherit pkgs;
+  };
+
+  imports = [vscode zsh tmux k8s];
 in {
   inherit imports;
 
