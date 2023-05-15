@@ -77,5 +77,32 @@ in {
         scope = "user";
       };
     };
+
+    # from: https://news.ycombinator.com/item?id=35944373
+    # Disable sending telemetry
+    clangd.checkUpdates = false; # Clangd
+    code-runner.enableAppInsights = false; # Code Runner
+    docker-explorer.enableTelemetry = false; # Docker
+    extensions.ignoreRecommendations = true; # VSCode Core
+    julia.enableTelemetry = false; # Julia
+    kite.showWelcomeNotificationOnStartup = false; # Kite
+    Lua.telemetry.enable = false; # Lua
+    pros.useGoogleAnalytics = false; # PROS
+    redhat.telemetry.enabled = false; # Red Hat
+    rpcServer.showStartupMessage = false; # VSCode Remote Development
+    sonarlint.disableTelemetry = true; # SonarLint
+    telemetry.enableCrashReporter = false; # VSCode Core
+    telemetry.enableTelemetry = false; # VSCode Core
+    terraform.telemetry.enabled = false; # HashiCorp Terraform
+    # Disable showing release notes
+    gitlens.showWhatsNewAfterUpgrades = false; # GitLens
+    java.help.showReleaseNotes = false; # Language Support for Java
+    update.showReleaseNotes = false; # VSCode Core
+    # Disable showing welcome pages / walkthroughs
+    gitlens.showWelcomeOnInstall = false; # GitLens
+    material-icon-theme.showWelcomeMessage = false; # Material Icon Theme
+    pros.showWelcomeOnStartup = false; # PROS
+    vsicons.dontShowNewVersionMessage = true; # VSCode Icons
+    workbench.welcomePage.walkthroughs.openOnInstall = false; # VSCode Core
   };
 }
