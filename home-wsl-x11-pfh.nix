@@ -109,5 +109,11 @@ in {
   programs.git = {
     userName = pkgs.lib.mkForce "Stauch, R. (Robert)";
     userEmail = pkgs.lib.mkForce "robert.stauch@fluxdev.de";
+    extraConfig = {
+      core = {
+        longpaths = true;
+        autocrlf = true;
+      };
+    };
   };
 }

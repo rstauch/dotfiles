@@ -9,6 +9,7 @@ in {
   tree = "${pkgs.lib.getExe pkgs.exa} --tree --level 3 --all --group-directories-first --no-permissions --no-time";
   bottom = "${pkgs.lib.getExe pkgs.bottom}";
   br = "br --cmd ':open_preview'";
+  b = "bat";
 
   hmu = "cd ${PROJECT_ROOT}/scripts && nix-channel --update && ./apply.sh && cd $OLDPWD && hm-gc";
   mk = "${pkgs.lib.getExe pkgs.minikube}";

@@ -3,8 +3,8 @@ set -e
 
 # installs intellij Ultimate Linux (dh NOT ARM64) edition
 
-INTELLIJ_VERSION="2023.1"
-INTELLIJ_INTERNAL_VERSION="231.8109.175"
+INTELLIJ_VERSION="2023.1.1"
+INTELLIJ_INTERNAL_VERSION="231.8770.65"
 
 # fix missing native libraries error to enable markdown preview in IntelliJ
 sudo apt-get install -y libxss1 libatk-bridge2.0-0 libcups2 libxdamage1 libgbm1 libxkbcommon0 libpango-1.0-0 libcairo2
@@ -14,11 +14,10 @@ sudo apt-get install -y fonts-symbola fonts-emojione
 fc-cache -f -v
 # pot notwendig: Settings -> editor -> font -> typography settings -> fallback font -> Noto Color Emoji
 
-
 # download and install intellij ultimate manually
-mkdir -p $HOME/Downloads/intellij
+mkdir -p $HOME/Downloads/intellij-${INTELLIJ_VERSION}
 cd $HOME/Downloads
-wget https://download-cdn.jetbrains.com/idea/ideaIU-2023.1.tar.gz
+wget https://download-cdn.jetbrains.com/idea/ideaIU-${INTELLIJ_VERSION}.tar.gz
 tar xvf ideaIU-${INTELLIJ_VERSION}.tar.gz -C intellij
 rm ideaIU-${INTELLIJ_VERSION}.tar.gz
 

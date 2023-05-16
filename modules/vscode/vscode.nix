@@ -20,6 +20,7 @@ in {
         kamadorueda.alejandra
         timonwong.shellcheck
         mhutchie.git-graph
+        redhat.vscode-xml
         # disabled extensions have to be removed from vscode by hand ?
         #TODO: enable this:
         #github.copilot
