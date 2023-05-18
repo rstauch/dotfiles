@@ -10,6 +10,7 @@ in {
   bottom = "${pkgs.lib.getExe pkgs.bottom}";
   br = "br --cmd ':open_preview'";
   b = "bat";
+  e = "code";
 
   hmu = "cd ${PROJECT_ROOT}/scripts && nix-channel --update && ./apply.sh && cd $OLDPWD && hm-gc";
   mk = "${pkgs.lib.getExe pkgs.minikube}";

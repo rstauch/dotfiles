@@ -6,6 +6,7 @@
   ...
 }: let
   PROJECT_ROOT = builtins.toString ./.;
+  gitignore-file = builtins.toString ./other/.gitignore_global;
 
   shared = import ./modules/shared/shared.nix {
     inherit pkgs;
@@ -113,7 +114,10 @@ in {
       core = {
         longpaths = true;
         autocrlf = true;
+        excludesfile = "/home/" + shared.home.username + "/.gitignore_global";
       };
     };
   };
+
+  home.file.".gitignore_global".source = config.lib.file.mkOutOfStoreSymlink "${gitignore-file}";
 }
