@@ -20,7 +20,10 @@
     inherit pkgs;
   };
 
-  imports = [java dev node];
+  broot = import ./../broot/broot.nix;
+  verbs-file = builtins.toString ./../broot/verbs.hjson;
+
+  imports = [java dev node broot];
 in {
   inherit imports;
 
@@ -85,4 +88,5 @@ in {
   # TODO: home.file.config* paths might be different on mac
   home.file.".config/nixpkgs/home.nix".source = config.lib.file.mkOutOfStoreSymlink "${home-nix-file}";
   home.file.".config/home-manager/home.nix".source = config.lib.file.mkOutOfStoreSymlink "${home-nix-file}";
+  home.file.".config/broot/verbs.hjson".source = config.lib.file.mkOutOfStoreSymlink "${verbs-file}";
 }

@@ -103,14 +103,6 @@ in {
     ]
     ++ [custom_python_enviroment];
 
-  programs.broot = {
-    enable = true;
-
-    enableBashIntegration = true;
-    enableFishIntegration = true;
-    enableZshIntegration = true;
-  };
-
   home.activation = {
     known_hosts = lib.hm.dag.entryAfter ["writeBoundary"] ''
        hosts=(
