@@ -148,7 +148,7 @@ in {
         # adb
         # aws
         # gcloud
-        # docker
+        "docker"
         # docker-compose ?
         # gitflow ?
         # fzf ?

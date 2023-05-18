@@ -36,15 +36,12 @@ in {
   # start x11 apps in background
   firefox = "sh $HOME/bg.sh '${pkgs.lib.getExe pkgs.firefox}'";
   ff = "sh $HOME/bg.sh '${pkgs.lib.getExe pkgs.firefox}'";
-  # check in script ob keepass läuft, falls nicht keepass starten (wg. integration mit browser)
-  # ff = "sh $HOME/mul.sh ${pkgs.lib.getExe pkgs.firefox} ${pkgs.lib.getExe pkgs.keepassxc}";
 
   chrome = "nohup ${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check > /dev/null 2>&1&";
   google-chrome = "nohup ${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check > /dev/null 2>&1&";
   google-chrome-stable = "nohup ${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check > /dev/null 2>&1&";
 
   postman = "sh $HOME/bg.sh ${pkgs.lib.getExe pkgs.postman}";
-  # keepassxc = "sh $HOME/bg.sh ${pkgs.lib.getExe pkgs.keepassxc}";
 
   # libreoffice = "sh $HOME/bg.sh '${pkgs.libreoffice}/bin/soffice'";
   # lo = "sh $HOME/bg.sh '${pkgs.libreoffice}/bin/soffice'";
@@ -54,6 +51,4 @@ in {
   os = "${pkgs.lib.getExe pkgs.onedrive} --synchronize --single-directory projects --verbose";
 
   meld = "sh $HOME/bg.sh ${pkgs.lib.getExe pkgs.meld}";
-
-  # setup = "$HOME/setup.sh";
 }
