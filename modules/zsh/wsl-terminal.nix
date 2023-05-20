@@ -5,6 +5,8 @@ in {
   cls = "clear";
   c = "clear";
 
+  j = "just";
+
   hmu = "cd ${PROJECT_ROOT}/scripts && nix-channel --update && ./apply.sh && cd $OLDPWD";
   hme = "home-manager edit";
   hm-gc = "nix-collect-garbage";

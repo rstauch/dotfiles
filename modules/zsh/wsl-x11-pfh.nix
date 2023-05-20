@@ -11,6 +11,7 @@ in {
   br = "br --cmd ':open_preview'";
   b = "bat";
   e = "code";
+  j = "just";
 
   hmu = "cd ${PROJECT_ROOT}/scripts && nix-channel --update && ./apply.sh && cd $OLDPWD && hm-gc";
   mk = "${pkgs.lib.getExe pkgs.minikube}";
