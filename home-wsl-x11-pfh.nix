@@ -73,7 +73,7 @@ in {
     extraConfig = {
       core = {
         longpaths = true;
-        autocrlf = true;
+        autocrlf = "input";
         excludesfile = "/home/" + shared.home.username + "/.gitignore_global";
       };
     };
