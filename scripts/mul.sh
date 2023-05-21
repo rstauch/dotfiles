@@ -7,7 +7,7 @@ APP2="$2"
 
 # Check if APP2 is running
 if ! pgrep -xf "$APP2" >/dev/null; then
-    # If APP2 is not running, start it
+    # If APP2 is not running, start APP2
     echo "Required app $APP2 is NOT already running. Starting it now..."
     sh $HOME/bg.sh "$APP2"
 fi

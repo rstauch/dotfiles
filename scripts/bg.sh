@@ -7,5 +7,5 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-# execute command with nohup in background
+# execute command with nohup in the background
 nohup "$1" >/dev/null 2>&1 &

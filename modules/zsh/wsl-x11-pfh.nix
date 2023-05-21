@@ -17,9 +17,6 @@ in {
   mk = "${pkgs.lib.getExe pkgs.minikube}";
   upd = "sudo apt-get update && sudo apt-get upgrade -y";
 
-  # run setup script as well
-  # hmus = "cd ${PROJECT_ROOT}/scripts && nix-channel --update && ./apply.sh && setup && cd $OLDPWD";
-
   hme = "home-manager edit";
   # should be equivalent to hme
   dot = "${pkgs.lib.getExe pkgs.vscode} ${PROJECT_ROOT}";
