@@ -42,7 +42,7 @@ in {
 
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
 
   # install global dependencies irrespective of platform
   home.packages = with pkgs; [
