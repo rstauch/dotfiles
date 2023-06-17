@@ -23,5 +23,7 @@ in {
     yed
 
     dos2unix
+
+    keystore-explorer
   ];
 }
