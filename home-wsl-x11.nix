@@ -37,16 +37,16 @@ in {
       $DRY_RUN_CMD touch $HOME/.config/keepassxc/keepassxc.ini
 
       # Modify Browser section
-      $DRY_RUN_CMD ${pkgs.lib.getBin pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Browser AllowExpiredCredentials true
+      $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Browser AllowExpiredCredentials true
 
-      $DRY_RUN_CMD ${pkgs.lib.getBin pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Browser CustomProxyLocation ""
+      $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Browser CustomProxyLocation ""
 
-      $DRY_RUN_CMD ${pkgs.lib.getBin pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Browser Enabled true
+      $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Browser Enabled true
 
       # Modify Security section
-      $DRY_RUN_CMD ${pkgs.lib.getBin pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Security ClearClipboardTimeout 90
+      $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Security ClearClipboardTimeout 90
 
-      $DRY_RUN_CMD ${pkgs.lib.getBin pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Security EnableCopyOnDoubleClick true
+      $DRY_RUN_CMD ${pkgs.lib.getExe pkgs.crudini} --set $HOME/.config/keepassxc/keepassxc.ini Security EnableCopyOnDoubleClick true
     '';
   };
 
