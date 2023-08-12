@@ -176,7 +176,7 @@ in {
       for key in "''${keys[@]}"
       do
         new_data="{\"$key\":{\"permissions\":[\"internal:privateBrowsingAllowed\"],\"origins\":[]}}"
-        merged_data=$(${pkgs.lib.getExe pkgs.jq} -n --argjson existing "$existing_data" --argjson newdata "$new_data" '$existing + $newdata')
+        merged_data=$(${pkgs.lib.getBin pkgs.jq} -n --argjson existing "$existing_data" --argjson newdata "$new_data" '$existing + $newdata')
         existing_data="$merged_data"
       done
 

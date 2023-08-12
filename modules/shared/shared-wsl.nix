@@ -137,7 +137,7 @@ in {
     Unit.Description = "Starting service onedrive";
     Unit.After = ["network.target"];
     Unit.ConditionPathExists = "/home/${config.username}/.config/onedrive/refresh_token";
-    Service.ExecStart = "${pkgs.lib.getExe pkgs.onedrive} --monitor --single-directory projects";
+    Service.ExecStart = "${pkgs.lib.getBin pkgs.onedrive} --monitor --single-directory projects";
     Install.WantedBy = ["default.target"];
   };
 

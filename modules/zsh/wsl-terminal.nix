@@ -13,10 +13,10 @@ in {
 
   # TODO: test (+dokumentieren) Verwendung with windows vscode
   # should be equivalent to hme
-  dot = "${pkgs.lib.getExe pkgs.vscode} ${PROJECT_ROOT}";
+  dot = "${pkgs.lib.getBin pkgs.vscode} ${PROJECT_ROOT}";
 
-  pbcopy = "${pkgs.lib.getExe pkgs.xclip} -selection clipboard";
-  pbpaste = "${pkgs.lib.getExe pkgs.xclip} -selection clipboard -o";
+  pbcopy = "${pkgs.lib.getBin pkgs.xclip} -selection clipboard";
+  pbpaste = "${pkgs.lib.getBin pkgs.xclip} -selection clipboard -o";
 
-  os = "${pkgs.lib.getExe pkgs.onedrive} --synchronize --single-directory projects --verbose";
+  os = "${pkgs.lib.getBin pkgs.onedrive} --synchronize --single-directory projects --verbose";
 }
