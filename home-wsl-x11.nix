@@ -97,12 +97,12 @@ in {
 
             if [ ! -d "$target_dir" ]; then
                 # If the target directory doesn't exist, clone the repository
-                ${pkgs.lib.getBin pkgs.git} clone "$repo_url" "$target_dir"
+                ${pkgs.lib.getExe pkgs.git} clone "$repo_url" "$target_dir"
             else
                 # If the target directory exists, fetch the latest changes from remote and reset the local branch
                 cd "$target_dir"
-                ${pkgs.lib.getBin pkgs.git} fetch origin
-                ${pkgs.lib.getBin pkgs.git} reset --hard origin/master
+                ${pkgs.lib.getExe pkgs.git} fetch origin
+                ${pkgs.lib.getExe pkgs.git} reset --hard origin/master
             fi
             cd "$target_dir"
             mvn clean install
@@ -118,7 +118,7 @@ in {
             local target_dir="$HOME/projects/$repo_name"
 
             if [ ! -d "$target_dir" ]; then
-                ${pkgs.lib.getBin pkgs.git} clone "$repo_url" "$target_dir"
+                ${pkgs.lib.getExe pkgs.git} clone "$repo_url" "$target_dir"
             else
                 echo "repo $repo_name already exists and is left untouched"
             fi
@@ -129,7 +129,7 @@ in {
 
             cd "$target_dir"
             echo "direnv init..."
-            ${pkgs.lib.getBin pkgs.direnv} allow
+            ${pkgs.lib.getExe pkgs.direnv} allow
 
             mvn clean install -DskipTests
 

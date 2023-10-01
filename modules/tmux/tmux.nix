@@ -26,7 +26,7 @@ in {
     # umschalten zwischen tabs möglich
     mouse = true;
 
-    shell = "${pkgs.lib.getBin pkgs.zsh}";
+    shell = "${pkgs.lib.getExe pkgs.zsh}";
     terminal = "screen-256color";
 
     # TODO: ggf. mac spezfische Tastaturbelegung

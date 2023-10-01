@@ -34,7 +34,7 @@ in {
     tmux.enableShellIntegration = true;
 
     fileWidgetOptions = [
-      "--height=70% --preview '${pkgs.lib.getBin pkgs.bat} --color=always --style=numbers --line-range=:1000 {}'"
+      "--height=70% --preview '${pkgs.lib.getExe pkgs.bat} --color=always --style=numbers --line-range=:1000 {}'"
     ];
   };
 
@@ -69,10 +69,10 @@ in {
       zstyle ':fzf-tab:complete:*' fzf-min-height 1000
 
       # preview directory's content with eza when completing cd
-      zstyle ':fzf-tab:complete:cd:*' fzf-preview '${pkgs.lib.getBin pkgs.eza} -1ha --color=always --group-directories-first $realpath'
+      zstyle ':fzf-tab:complete:cd:*' fzf-preview '${pkgs.lib.getExe pkgs.eza} -1ha --color=always --group-directories-first $realpath'
 
       # enable preview with bat/cat/less
-      zstyle ':fzf-tab:complete:(bat|cat|less):*' fzf-preview '${pkgs.lib.getBin pkgs.bat} --color=always --style=numbers --line-range=:1000 $realpath'
+      zstyle ':fzf-tab:complete:(bat|cat|less):*' fzf-preview '${pkgs.lib.getExe pkgs.bat} --color=always --style=numbers --line-range=:1000 $realpath'
 
       eval "$(direnv hook zsh)"
     '';

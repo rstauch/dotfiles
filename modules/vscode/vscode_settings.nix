@@ -58,9 +58,9 @@ in {
     "[nix]".editor.defaultFormatter = "kamadorueda.alejandra";
 
     nix.enableLanguageServer = true;
-    nix.serverPath = pkgs.lib.getBin pkgs.nil;
+    nix.serverPath = pkgs.lib.getExe pkgs.nil;
     nix.serverSettings.nil = {
-      formatting.command = [(pkgs.lib.getBin pkgs.alejandra)];
+      formatting.command = [(pkgs.lib.getExe pkgs.alejandra)];
     };
 
     cSpell.languageSettings = [

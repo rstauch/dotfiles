@@ -2,12 +2,12 @@
   PROJECT_ROOT = builtins.toString ./../../.;
 in {
   l = "ls -lah --group-directories-first --color=auto";
-  lsl = "${pkgs.lib.getBin pkgs.eza} -la --group-directories-first --color=auto --no-user --no-permissions --header --no-time";
+  lsl = "${pkgs.lib.getExe pkgs.eza} -la --group-directories-first --color=auto --no-user --no-permissions --header --no-time";
   cls = "clear";
   c = "clear";
 
-  tree = "${pkgs.lib.getBin pkgs.eza} --tree --level 3 --all --group-directories-first --no-permissions --no-time";
-  bottom = "${pkgs.lib.getBin pkgs.bottom}";
+  tree = "${pkgs.lib.getExe pkgs.eza} --tree --level 3 --all --group-directories-first --no-permissions --no-time";
+  bottom = "${pkgs.lib.getExe pkgs.bottom}";
   br = "br --cmd ':open_preview'";
   b = "bat";
   e = "code";
@@ -19,27 +19,27 @@ in {
 
   hme = "home-manager edit";
   # should be equivalent to hme
-  dot = "${pkgs.lib.getBin pkgs.vscode} ${PROJECT_ROOT}";
+  dot = "${pkgs.lib.getExe pkgs.vscode} ${PROJECT_ROOT}";
 
   hm-gc = "nix-collect-garbage";
 
   # simulate mac
-  pbcopy = "${pkgs.lib.getBin pkgs.xclip} -selection clipboard";
-  pbpaste = "${pkgs.lib.getBin pkgs.xclip} -selection clipboard -o";
+  pbcopy = "${pkgs.lib.getExe pkgs.xclip} -selection clipboard";
+  pbpaste = "${pkgs.lib.getExe pkgs.xclip} -selection clipboard -o";
 
   # tmux
-  tkill = "${pkgs.lib.getBin pkgs.tmux} kill-server";
-  t = "${pkgs.lib.getBin pkgs.tmux} attach";
+  tkill = "${pkgs.lib.getExe pkgs.tmux} kill-server";
+  t = "${pkgs.lib.getExe pkgs.tmux} attach";
 
   # start x11 apps in background
-  firefox = "sh $HOME/bg.sh '${pkgs.lib.getBin pkgs.firefox}'";
-  ff = "sh $HOME/bg.sh '${pkgs.lib.getBin pkgs.firefox}'";
+  firefox = "sh $HOME/bg.sh '${pkgs.lib.getExe pkgs.firefox}'";
+  ff = "sh $HOME/bg.sh '${pkgs.lib.getExe pkgs.firefox}'";
 
-  chrome = "nohup ${pkgs.lib.getBin pkgs.google-chrome} --no-first-run --no-default-browser-check > /dev/null 2>&1&";
-  google-chrome = "nohup ${pkgs.lib.getBin pkgs.google-chrome} --no-first-run --no-default-browser-check > /dev/null 2>&1&";
-  google-chrome-stable = "nohup ${pkgs.lib.getBin pkgs.google-chrome} --no-first-run --no-default-browser-check > /dev/null 2>&1&";
+  chrome = "nohup ${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check > /dev/null 2>&1&";
+  google-chrome = "nohup ${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check > /dev/null 2>&1&";
+  google-chrome-stable = "nohup ${pkgs.lib.getExe pkgs.google-chrome} --no-first-run --no-default-browser-check > /dev/null 2>&1&";
 
-  postman = "sh $HOME/bg.sh ${pkgs.lib.getBin pkgs.postman}";
+  postman = "sh $HOME/bg.sh ${pkgs.lib.getExe pkgs.postman}";
 
   # libreoffice = "sh $HOME/bg.sh '${pkgs.libreoffice}/bin/soffice'";
   # lo = "sh $HOME/bg.sh '${pkgs.libreoffice}/bin/soffice'";
@@ -48,5 +48,5 @@ in {
 
   os = "${pkgs.lib.getBin pkgs.onedrive} --synchronize --single-directory projects --verbose";
 
-  meld = "sh $HOME/bg.sh ${pkgs.lib.getBin pkgs.meld}";
+  meld = "sh $HOME/bg.sh ${pkgs.lib.getExe pkgs.meld}";
 }
