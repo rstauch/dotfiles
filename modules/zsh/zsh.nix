@@ -15,7 +15,7 @@ in {
     # requirements
     pkgs.xclip
     pkgs.bat
-    pkgs.exa
+    pkgs.eza
 
     # fzf preview
     pkgs.lesspipe
@@ -68,8 +68,8 @@ in {
       # https://github.com/Freed-Wu/fzf-tab-source
       zstyle ':fzf-tab:complete:*' fzf-min-height 1000
 
-      # preview directory's content with exa when completing cd
-      zstyle ':fzf-tab:complete:cd:*' fzf-preview '${pkgs.lib.getBin pkgs.exa} -1ha --color=always --group-directories-first $realpath'
+      # preview directory's content with eza when completing cd
+      zstyle ':fzf-tab:complete:cd:*' fzf-preview '${pkgs.lib.getBin pkgs.eza} -1ha --color=always --group-directories-first $realpath'
 
       # enable preview with bat/cat/less
       zstyle ':fzf-tab:complete:(bat|cat|less):*' fzf-preview '${pkgs.lib.getBin pkgs.bat} --color=always --style=numbers --line-range=:1000 $realpath'

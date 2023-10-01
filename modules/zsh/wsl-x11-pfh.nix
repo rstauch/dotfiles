@@ -2,11 +2,11 @@
   PROJECT_ROOT = builtins.toString ./../../.;
 in {
   l = "ls -lah --group-directories-first --color=auto";
-  lsl = "${pkgs.lib.getBin pkgs.exa} -la --group-directories-first --color=auto --no-user --no-permissions --header --no-time";
+  lsl = "${pkgs.lib.getBin pkgs.eza} -la --group-directories-first --color=auto --no-user --no-permissions --header --no-time";
   cls = "clear";
   c = "clear";
 
-  tree = "${pkgs.lib.getBin pkgs.exa} --tree --level 3 --all --group-directories-first --no-permissions --no-time";
+  tree = "${pkgs.lib.getBin pkgs.eza} --tree --level 3 --all --group-directories-first --no-permissions --no-time";
   bottom = "${pkgs.lib.getBin pkgs.bottom}";
   br = "br --cmd ':open_preview'";
   b = "bat";
